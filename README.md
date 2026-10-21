@@ -1,74 +1,70 @@
-# Robson Client · Showcase Website
+# 💎 Robson Client · Modpack Oficial Minecraft 1.21.1 (Fabric)
 
-Landing page vitrine 100% interativa, moderna e animada para o **Robson Client** (Minecraft 1.21.1 Fabric).
+<p align="center">
+  <img src="assets/robson-logo.png" width="120" alt="Robson Client Logo" />
+</p>
 
----
+<p align="center">
+  <strong>Sua experiência, suas regras. Performance máxima, tradução nativa e personalização in-game sem poluição.</strong>
+</p>
 
-## 🚀 Como testar localmente
-
-Você pode abrir o site de duas formas no seu computador:
-
-### Opção 1: Servidor Local Rápido (Recomendado para testar vídeos e áudio sem bloqueio de navegador)
-Abra o terminal no projeto e execute:
-```bash
-python -m http.server 8080 --directory website
-```
-Em seguida, abra no navegador: **`http://localhost:8080`**
-
-*(Ou se preferir Node.js: `npx serve website`)*
-
-### Opção 2: Abrir direto
-Dê dois cliques no arquivo [`website/index.html`](index.html) para abrir diretamente no seu navegador padrão (Edge, Chrome, Firefox).
+<p align="center">
+  <a href="https://hwuconta-tech.github.io/robson-client/">
+    <img src="https://img.shields.io/badge/🌐_Acessar_Site_Interativo-06b6d4?style=for-the-badge&logoColor=white" alt="Site Interativo" />
+  </a>
+  <img src="https://img.shields.io/badge/Minecraft-1.21.1-10b981?style=for-the-badge" alt="Minecraft 1.21.1" />
+  <img src="https://img.shields.io/badge/Fabric-Loader-8b5cf6?style=for-the-badge" alt="Fabric" />
+  <img src="https://img.shields.io/badge/Modrinth-Modpack-00AF5C?style=for-the-badge&logo=modrinth&logoColor=white" alt="Modrinth" />
+</p>
 
 ---
 
-## 🌐 Como colocar no ar 100% GRÁTIS (24/7)
+## 🌟 O que é o Robson Client?
 
-### Vercel (Recomendado - Deploy Instantâneo)
-1. Crie uma conta gratuita em [vercel.com](https://vercel.com).
-2. Conecte sua conta do GitHub ou instale a CLI com `npm i -g vercel`.
-3. Crie um novo projeto apontando para este repositório e configure o **Root Directory** como `website`.
-4. Clique em **Deploy**. Seu site estará no ar em poucos segundos em um subdomínio como `robson-client.vercel.app` com SSL/HTTPS gratuito.
+O **Robson Client** é um modpack completo e client pessoal construído para **Minecraft 1.21.1 (Fabric)**, disponível no formato `.mrpack` no **Modrinth**.
 
-### GitHub Pages
-1. No seu repositório no GitHub, vá em **Settings** > **Pages**.
-2. Em **Build and deployment**, selecione a branch e aponte para a pasta `/website` (ou use uma branch `gh-pages`).
-3. O site ficará acessível gratuitamente em `seunome.github.io/MeuClient/website`.
+Ele foi desenvolvido para jogadores que querem um jogo leve, com **FPS nas alturas** e ferramentas úteis para o dia a dia (Survival, RankUp, PvP ou Servidores Globais), sem a necessidade de launchers proprietários pesados ou poluição visual cheia de cosméticos pagos.
+
+> 🎮 **Experimente a interface completa no navegador:**  
+> 👉 **[Clique aqui para abrir o site interativo do Robson Client](https://hwuconta-tech.github.io/robson-client/)**
 
 ---
 
-## 💎 Funcionalidades e Interatividade do Site
+## 🚀 Principais Destaques
 
-1. **Holograma 3D Interativo (Hero)**:
-   - Responde ao movimento do mouse com perspectiva e inclinação 3D dinâmica (`rotateX`/`rotateY`).
-   - Linhas de scanner holográfico e telemetria de performance em tempo real.
+### ⚡ 1. Otimização Pesada Já Inclusa (Zero Lag)
+O pacote já vem configurado com os melhores mods de performance da comunidade Fabric (Sodium, Lithium, ImmediatelyFast, FerriteCore, Entity Culling e outros).
+- Carregamento de chunks ultra-rápido.
+- FPS consistente e estável mesmo em áreas com muitas entidades e blocos.
+- Sem travamentos ou picos de memória.
 
-2. **Seletor de Temas Global (Sincronizado)**:
-   - Alterna entre **Diamante**, **Ametista** e **Esmeralda**.
-   - Atualiza a paleta de cores, brilhos neon e bordas do site inteiro E do menu in-game simultaneamente.
+### 🌐 2. Tradutor de Chat em Tempo Real (PT ↔ EN)
+Jogue em servidores gringos sem qualquer barreira de idioma!
+- Mensagens recebidas em inglês são traduzidas automaticamente para você.
+- Digite em português na barra de chat e envie diretamente traduzido para inglês com um clique.
 
-3. **Menu In-Game 100% Clicável**:
-   - Interface embutida em moldura de monitor gamer.
-   - Navegue pelas abas: *Menu Principal*, *Editor de HUD* e *Chat Avançado*.
-   - Alterne categorias (*Visual*, *Jogador*, *HUD*, *Chat*, etc.) e teste os sliders e toggles.
+### 🎨 3. Três Temas Visuais Exclusivos
+Escolha o estilo que combina com o seu momento:
+- 💎 **Corte Diamante**: Linhas geométricas lapidadas e reflexos minerais frios.
+- 🔮 **Geodo Ametista**: Curvas suaves, camadas de basalto e detalhes em cobre.
+- 🌿 **Mina Esmeralda**: Acabamento industrial em deepslate e faixas de madeira rústica.
 
-4. **HUD Studio ao Vivo (Laboratório Drag & Drop)**:
-   - Arraste a **Scoreboard**, **Chat**, **Boss Bar** e **FPS** livremente pela tela com o mouse.
-   - Controles de opacidade, escala e grade de alinhamento.
-   - Vídeo real in-game rodando ao lado com corte de CSS (sem barras do Windows).
+### 📐 4. Robson HUD Studio (Arraste e Solte)
+Personalize sua tela como quiser. Abra o editor in-game e reposicione a Scoreboard, o Chat, a Boss Bar, o contador de FPS e os efeitos de poção arrastando diretamente com o mouse, com grade de alinhamento e ajustes finos de escala e opacidade.
 
-5. **Chat Inteligente & Tradutor Nativo**:
-   - Digite em português ou inglês para ver o tradutor disparar ao vivo.
-   - Botões de **AutoTexts** (com os 6 atalhos) e **Símbolos** (✧, ⚒, ⚔, ★, ❤, ⚡).
-   - Simulação de respostas realistas no chat.
-   - Vídeo in-game em servidor gringo ao lado.
+### 💬 5. Chat Bar Inteligente & Atalhos Rápidos
+- **AutoTexts:** Atalhos para seus 6 comandos mais usados (`/home`, `/mina`, `/spawn`, etc.).
+- **Seletor de Símbolos:** Insira caracteres especiais (`✧`, `⚒`, `⚔`, `★`, `❤`) com um toque.
+- **Histórico Estendido:** Consulte até 2000 linhas de histórico da conversa.
+- **Filtros Locais:** Esconda mensagens repetidas, spam e destaque sempre que alguém mencionar seu nome.
 
-6. **Bento Grid & Mini-Game CPS**:
-   - Apresentação visual da arquitetura Fabric e dos módulos visuais.
-   - Botão interativo para medir seu CPS (cliques por segundo) diretamente na página!
+### 🛡️ 6. Menu Vanilla 100% Preservado
+A tela de início oficial do Minecraft permanece **totalmente limpa e original**. O Robson Client não substitui telas oficiais do jogo: todas as personalizações e menus aparecem exclusivamente **dentro da partida** ao pressionar a tecla de atalho.
 
-7. **Galeria de Capturas In-Game com Lightbox**:
-   - Screenshots em alta definição dos 3 temas e módulos com zoom ao clicar.
+---
 
-8. **Integração Discord**:
-   - Botões que copiam sua tag do Discord (`@caio`) para a área de transferência com toast animado.
+## 👤 Criador & Contato
+
+- **Desenvolvedor:** Caio
+- **Discord:** `@caio`
+- **Projeto:** Pessoal e independente para a comunidade de Minecraft 1.21.1 Fabric.

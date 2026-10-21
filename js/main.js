@@ -3,9 +3,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initSmoothScroll();
+  initScrollReveal();
   initAudioFeedback();
   initThemeSystem();
-  initHologram3D();
+  initMinecraftScreen3D();
   initClientFrameSync();
   initHudStudioLab();
   initChatTranslatorLab();
@@ -15,7 +17,59 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================
-   0. AUDIO FEEDBACK SYSTEM (Web Audio API sintetizada, leve e tátil)
+   1. LENIS SMOOTH SCROLL (O SCROLL MACIO QUE AS COISAS VÊM JUNTO)
+   ========================================================== */
+let lenis = null;
+
+function initSmoothScroll() {
+  if (typeof Lenis !== 'undefined') {
+    try {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.05
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    } catch (e) {
+      console.warn('Lenis fallback to native scroll:', e);
+    }
+  }
+}
+
+/* ==========================================================
+   2. SCROLL REVEAL (ANIMAÇÕES QUE SE MONTAM CONFORME ROLA)
+   ========================================================== */
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll('[data-reveal]');
+  
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.15
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+  } else {
+    // Fallback if no observer
+    revealElements.forEach(el => el.classList.add('revealed'));
+  }
+}
+
+/* ==========================================================
+   3. AUDIO FEEDBACK SYSTEM (Web Audio API sintetizada)
    ========================================================== */
 let audioCtx = null;
 let soundEnabled = true;
@@ -66,13 +120,13 @@ function playUiSound(type = 'click') {
       osc.stop(now + 0.15);
     }
   } catch (e) {
-    // Silently continue if audio context is blocked
+    // Continue silently if audio context is blocked
   }
 }
 
 function initAudioFeedback() {
   document.addEventListener('click', (e) => {
-    const interactiveTarget = e.target.closest('button, .nav-links a, .chat-action-btn, .theme-btn, .gallery-item');
+    const interactiveTarget = e.target.closest('button, .nav-links a, .mc-chatbar-btn, .theme-btn, .gallery-item, .mc-slot');
     if (interactiveTarget) {
       if (interactiveTarget.classList.contains('theme-btn')) {
         playUiSound('theme');
@@ -84,7 +138,7 @@ function initAudioFeedback() {
 }
 
 /* ==========================================================
-   1. THEME SYSTEM
+   4. THEME SYSTEM (TRANSFORMA A IDENTIDADE INTEIRA DO SITE)
    ========================================================== */
 const THEMES = ['diamante', 'ametista', 'esmeralda'];
 let currentTheme = 'diamante';
@@ -104,24 +158,18 @@ function setSiteTheme(theme, syncWithIframe = true) {
   currentTheme = theme;
   document.body.dataset.siteTheme = theme;
 
-  // Update theme pill buttons
+  // Atualiza botões do seletor
   document.querySelectorAll('[data-set-theme]').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.setTheme === theme);
   });
 
-  // Update hologram telemetry display
+  // Atualiza telemetria no jogo
   const telemetryTheme = document.getElementById('telemetry-theme');
   if (telemetryTheme) {
     telemetryTheme.textContent = theme.toUpperCase();
   }
 
-  // Update theme SVGs if displayed
-  const themeIcon = document.getElementById('hologram-theme-svg');
-  if (themeIcon) {
-    themeIcon.src = `assets/${theme}.svg`;
-  }
-
-  // Sync with embedded in-game client iframe
+  // Sincroniza com o menu do client embutido no iframe
   if (syncWithIframe) {
     const iframe = document.getElementById('client-iframe');
     if (iframe && iframe.contentWindow) {
@@ -135,31 +183,31 @@ function setSiteTheme(theme, syncWithIframe = true) {
 }
 
 /* ==========================================================
-   2. 3D HOLOGRAM PARALLAX
+   5. MINECRAFT SCREEN 3D TILT (HERO REAL)
    ========================================================== */
-function initHologram3D() {
-  const stage = document.querySelector('.hologram-stage');
-  const card = document.querySelector('.hologram-card');
-  if (!stage || !card) return;
+function initMinecraftScreen3D() {
+  const wrap = document.querySelector('.mc-game-viewport-wrap');
+  const screen = document.getElementById('hero-game-screen');
+  if (!wrap || !screen) return;
 
-  stage.addEventListener('mousemove', (e) => {
-    const rect = stage.getBoundingClientRect();
+  wrap.addEventListener('mousemove', (e) => {
+    const rect = wrap.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-    const rotY = x * 22;
-    const rotX = -y * 22;
+    const rotY = x * 18;
+    const rotX = -y * 18;
 
-    card.style.transform = `rotateY(${rotY.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+    screen.style.transform = `rotateY(${rotY.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
   });
 
-  stage.addEventListener('mouseleave', () => {
-    card.style.transform = 'rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)';
+  wrap.addEventListener('mouseleave', () => {
+    screen.style.transform = 'rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)';
   });
 }
 
 /* ==========================================================
-   3. CLIENT FRAME CONTROLS & IFRAME SYNC
+   6. CLIENT FRAME CONTROLS & IFRAME SYNC
    ========================================================== */
 function initClientFrameSync() {
   const iframe = document.getElementById('client-iframe');
@@ -181,12 +229,12 @@ function initClientFrameSync() {
     toggleDecorsBtn.addEventListener('click', () => {
       if (iframe && iframe.contentWindow) {
         iframe.contentWindow.postMessage({ type: 'TOGGLE_DECORATIONS' }, '*');
-        showToast('Decorações do menu alternadas.');
+        showToast('Decorações do menu in-game alternadas.');
       }
     });
   }
 
-  // Listen to messages from the embedded client
+  // Ouvinte de mensagens do client
   window.addEventListener('message', (e) => {
     if (!e.data) return;
     if (e.data.type === 'ROBSON_CLIENT_SYNC' && e.data.theme) {
@@ -198,7 +246,7 @@ function initClientFrameSync() {
 }
 
 /* ==========================================================
-   4. INTERACTIVE HUD STUDIO LAB
+   7. INTERACTIVE HUD STUDIO LAB
    ========================================================== */
 function initHudStudioLab() {
   const canvas = document.getElementById('hud-interactive-canvas');
@@ -217,7 +265,6 @@ function initHudStudioLab() {
       selectedName.textContent = item.dataset.name || 'Elemento';
     }
 
-    // Sync sliders
     const opacitySlider = document.getElementById('hud-slider-opacity');
     if (opacitySlider) {
       const currentOpacity = Math.round((parseFloat(item.style.opacity) || 1) * 100);
@@ -242,7 +289,6 @@ function initHudStudioLab() {
         let newLeft = ev.clientX - canvasRect.left - offsetX;
         let newTop = ev.clientY - canvasRect.top - offsetY;
 
-        // Keep inside canvas bounds
         newLeft = Math.max(8, Math.min(canvas.clientWidth - item.offsetWidth - 8, newLeft));
         newTop = Math.max(8, Math.min(canvas.clientHeight - item.offsetHeight - 8, newTop));
 
@@ -262,7 +308,6 @@ function initHudStudioLab() {
     });
   });
 
-  // Controls
   const opacitySlider = document.getElementById('hud-slider-opacity');
   if (opacitySlider) {
     opacitySlider.addEventListener('input', (e) => {
@@ -310,7 +355,7 @@ function initHudStudioLab() {
 }
 
 /* ==========================================================
-   5. CHAT & TRANSLATOR SIMULATOR (COM GOOGLE TRANSLATE REAL)
+   8. CHAT 100% MINECRAFT COM GOOGLE TRANSLATE REAL
    ========================================================== */
 function initChatTranslatorLab() {
   const input = document.getElementById('chat-sim-input');
@@ -321,24 +366,21 @@ function initChatTranslatorLab() {
 
   let debounceTimer = null;
 
-  // Chamada assíncrona à API pública do Google Translate
   async function fetchRealGoogleTranslation(text) {
     if (!text.trim()) return '';
     try {
-      // Endpoint público do Google Translate (gtx)
       const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=pt&dt=t&q=${encodeURIComponent(text)}`;
       const res = await fetch(url);
       const data = await res.json();
       if (data && data[0] && data[0][0] && data[0][0][0]) {
         let detected = data[2] || 'auto';
-        // Se já era português, traduz para inglês para demonstrar bidirecional
         if (detected === 'pt') {
           const enUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=en&dt=t&q=${encodeURIComponent(text)}`;
           const enRes = await fetch(enUrl);
           const enData = await enRes.json();
-          return { text: enData[0][0][0], lang: 'EN (Inglês)' };
+          return { text: enData[0][0][0], lang: 'EN' };
         }
-        return { text: data[0][0][0], lang: 'PT (Português)' };
+        return { text: data[0][0][0], lang: 'PT' };
       }
     } catch (err) {
       console.warn('Google Translate API fallback:', err);
@@ -349,12 +391,12 @@ function initChatTranslatorLab() {
   input.addEventListener('input', () => {
     const text = input.value.trim();
     if (!text) {
-      transIndicator.textContent = 'Digite algo em português ou inglês para pré-visualizar...';
+      transIndicator.textContent = 'Digite algo em português ou inglês para testar a tradução via Google...';
       return;
     }
 
     clearTimeout(debounceTimer);
-    transIndicator.innerHTML = `Robson Translator 🌐: <em>Traduzindo via Google...</em>`;
+    transIndicator.innerHTML = `Robson Translator 🌐: <em>Traduzindo ao vivo via Google...</em>`;
 
     debounceTimer = setTimeout(async () => {
       const res = await fetchRealGoogleTranslation(text);
@@ -370,40 +412,39 @@ function initChatTranslatorLab() {
 
     playUiSound('message');
 
-    // Tradução real
     const translationResult = await fetchRealGoogleTranslation(text);
     const translatedText = translationResult ? translationResult.text : text;
 
-    // Append user message
+    // Linha Minecraft autêntica
     const msgEl = document.createElement('div');
-    msgEl.className = 'chat-msg';
+    msgEl.className = 'mc-chat-line';
     msgEl.innerHTML = `
-      <span class="tag-player">Você:</span>
-      <span>${escapeHtml(text)}</span>
-      <span class="text-trans">🌐 ${escapeHtml(translatedText)}</span>
+      <span class="mc-c-rank">&lt;Você&gt;</span>
+      <span class="mc-c-white">${escapeHtml(text)}</span>
+      <span class="mc-c-trans">🌐 Traduzido: "${escapeHtml(translatedText)}"</span>
     `;
     messagesBox.appendChild(msgEl);
     messagesBox.scrollTop = messagesBox.scrollHeight;
     input.value = '';
-    transIndicator.textContent = 'Digite algo em português ou inglês para pré-visualizar...';
+    transIndicator.textContent = 'Digite algo em português ou inglês para testar a tradução via Google...';
 
-    // Simulate in-game player response
+    // Resposta de jogador simulada
     setTimeout(async () => {
       const replies = [
-        'Hey there, nice to meet you!',
+        'Hey Caio, thanks for the trade!',
         'Can anyone help me build a mob trap?',
         'Mining diamonds at Y: -58 right now!',
-        'Good luck everyone, have fun!'
+        'GG everyone, see you in the nether!'
       ];
       const randomEng = replies[Math.floor(Math.random() * replies.length)];
       const botTrans = await fetchRealGoogleTranslation(randomEng);
 
       const botMsg = document.createElement('div');
-      botMsg.className = 'chat-msg';
+      botMsg.className = 'mc-chat-line';
       botMsg.innerHTML = `
-        <span class="tag-rank">[GringoPlayer]:</span>
-        <span>${escapeHtml(randomEng)}</span>
-        <span class="text-trans">🌐 Traduzido: "${escapeHtml(botTrans.text)}"</span>
+        <span class="mc-c-player">&lt;Steve_US&gt;</span>
+        <span class="mc-c-white">${escapeHtml(randomEng)}</span>
+        <span class="mc-c-trans">🌐 Traduzido: "${escapeHtml(botTrans.text)}"</span>
       `;
       messagesBox.appendChild(botMsg);
       messagesBox.scrollTop = messagesBox.scrollHeight;
@@ -456,7 +497,6 @@ function initChatTranslatorLab() {
     });
   }
 
-  // Close popovers on click outside
   document.addEventListener('click', () => {
     popAutoText?.classList.remove('open');
     popSymbols?.classList.remove('open');
@@ -470,55 +510,7 @@ function escapeHtml(str) {
 }
 
 /* ==========================================================
-   6. CPS TESTER (BENTO CARD MINI-GAME)
-   ========================================================== */
-function initCpsTester() {
-  const btn = document.getElementById('cps-click-target');
-  const cpsDisplay = document.getElementById('cps-live-value');
-  const countDisplay = document.getElementById('cps-click-count');
-  const timeDisplay = document.getElementById('cps-time-left');
-  if (!btn) return;
-
-  let clicks = 0;
-  let timer = null;
-  let timeLeft = 5;
-  let running = false;
-
-  btn.addEventListener('click', () => {
-    if (!running) {
-      running = true;
-      clicks = 0;
-      timeLeft = 5;
-      timeDisplay.textContent = '5.0s';
-      btn.textContent = 'CLIQUE O MAIS RÁPIDO POSSÍVEL!';
-
-      const startTime = performance.now();
-      timer = setInterval(() => {
-        const elapsed = (performance.now() - startTime) / 1000;
-        const remaining = Math.max(0, 5 - elapsed);
-        timeDisplay.textContent = `${remaining.toFixed(1)}s`;
-
-        const currentCps = clicks / Math.max(0.1, elapsed);
-        cpsDisplay.textContent = currentCps.toFixed(1);
-
-        if (remaining <= 0) {
-          clearInterval(timer);
-          running = false;
-          const finalCps = (clicks / 5).toFixed(1);
-          cpsDisplay.textContent = finalCps;
-          btn.textContent = `FINALIZADO: ${finalCps} CPS! Clique para tentar de novo.`;
-          showToast(`Seu teste atingiu ${finalCps} CPS!`);
-        }
-      }, 100);
-    }
-
-    clicks++;
-    countDisplay.textContent = clicks;
-  });
-}
-
-/* ==========================================================
-   7. GALLERY LIGHTBOX
+   9. GALLERY LIGHTBOX
    ========================================================== */
 function initGalleryLightbox() {
   const modal = document.getElementById('lightbox-modal');
@@ -540,7 +532,7 @@ function initGalleryLightbox() {
 }
 
 /* ==========================================================
-   8. DISCORD CLIPBOARD & TOAST
+   10. DISCORD CLIPBOARD & TOAST
    ========================================================== */
 function initDiscordCopy() {
   const discordBtns = document.querySelectorAll('[data-discord-copy]');
@@ -577,7 +569,7 @@ function showToast(message) {
 }
 
 /* ==========================================================
-   9. SCROLL NAV ACTIVE OBSERVER
+   11. SCROLL NAV ACTIVE OBSERVER
    ========================================================== */
 function initScrollNav() {
   const sections = document.querySelectorAll('section[id]');
