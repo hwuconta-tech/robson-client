@@ -7,21 +7,40 @@
   <meta name="description" content="Showcase oficial do Robson Client: modpack no Modrinth e client Fabric para Minecraft 1.21.1 com tradução em tempo real, HUD Studio e 3 temas exclusivos.">
   <link rel="icon" type="image/png" href="assets/robson-logo.png">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Lenis Smooth Scroll -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 </head>
 <body data-site-theme="diamante">
 
-  <!-- NAVBAR FLUTUANTE EM VIDRO ESTILIZADO -->
+  <!-- DECORAÇÕES GLOBAIS DO TEMA NO NAVEGADOR (CRISTAIS, GEODOS E MINA) -->
+  <div class="browser-theme-decorations" aria-hidden="true">
+    <div class="browser-corner top-left"></div>
+    <div class="browser-corner top-right"></div>
+    <div class="browser-corner bottom-left"></div>
+    <div class="browser-corner bottom-right"></div>
+  </div>
+
+  <!-- SELO FLUTUANTE DO TEMA ATUAL (CANTO INFERIOR ESQUERDO) -->
+  <div class="browser-theme-stamp" id="browser-theme-cycle" title="Clique para alternar o tema e as decorações do navegador">
+    <div class="browser-theme-stamp-icon"></div>
+    <div class="browser-theme-stamp-text">
+      <strong id="stamp-theme-name">Tema: Diamante</strong>
+      <small id="stamp-theme-caption">CORTE DIAMANTE</small>
+    </div>
+  </div>
+
+  <!-- NAVBAR COM TEXTURA E EMBLEMAS REAIS DOS TEMAS -->
   <div class="navbar-wrap">
     <nav class="navbar">
       <a href="#hero" class="nav-brand">
         <img src="assets/robson-logo.png" alt="Robson Client Logo">
         <div class="nav-brand-text">
           <span class="nav-brand-title">Robson Client</span>
-          <span class="nav-brand-version">Fabric 1.21.1</span>
+          <span class="nav-brand-version" id="nav-theme-subtitle">CORTE DIAMANTE</span>
         </div>
       </a>
+
+      <!-- Faixa de material real do tema (idêntico ao topo do menu in-game) -->
+      <div class="theme-material-strip" title="Acabamento material do tema ativo"></div>
 
       <ul class="nav-links">
         <li><a href="#hero" class="active">Início</a></li>
@@ -33,41 +52,40 @@
       </ul>
 
       <div class="nav-actions">
-        <!-- Seletor de Temas Global -->
-        <div class="theme-selector-pill" title="Mudar Tema do Client e do Site">
+        <!-- Seletor de Temas Global com Ícones Pixel-Art Reais -->
+        <div class="theme-selector-pill" title="Mudar Tema e Decorações do Site">
           <button class="theme-btn active" data-set-theme="diamante" title="Tema Diamante (Mineral Lapidado)">
-            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3 6l4-4h6l4 4-7 12Z"/></svg>
+            <img src="assets/themes/diamante-icon.png" alt="Diamante">
             <span>Diamante</span>
           </button>
           <button class="theme-btn" data-set-theme="ametista" title="Tema Ametista (Estratos de Geodo)">
-            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2l6 4-3 12H7L4 6Z"/></svg>
+            <img src="assets/themes/ametista-icon.png" alt="Ametista">
             <span>Ametista</span>
           </button>
           <button class="theme-btn" data-set-theme="esmeralda" title="Tema Esmeralda (Oficina de Deepslate)">
-            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 2h10l3 6-8 10L2 8Z"/></svg>
+            <img src="assets/themes/esmeralda-icon.png" alt="Esmeralda">
             <span>Esmeralda</span>
           </button>
         </div>
 
-        <!-- Botão Discord -->
         <button class="btn-discord-nav" data-discord-copy="caio" title="Copiar usuário do Discord">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-          <span>Discord (@caio)</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028z"/></svg>
+          <span>Discord</span>
         </button>
       </div>
     </nav>
   </div>
 
-  <!-- HERO SECTION: IN-GAME MINECRAFT SHOWCASE VIVO -->
+  <!-- HERO SECTION: TELA REAL DO MINECRAFT 1.21.1 INTERATIVA -->
   <section id="hero" class="hero-section">
     <div class="hero-glow-orb"></div>
 
     <div class="hero-content">
       <div class="hero-badges-row" data-reveal>
         <span class="badge pulse">Minecraft 1.21.1 Fabric</span>
-        <span class="badge">Disponível no Modrinth</span>
+        <span class="badge">Modpack Oficial no Modrinth</span>
         <span class="badge">Tradução Nativa EN ↔ PT</span>
-        <span class="badge">Menu Vanilla Intacto</span>
+        <span class="badge">Menu Vanilla 100% Intacto</span>
       </div>
 
       <h1 class="hero-title" data-reveal data-reveal-delay="1">
@@ -76,60 +94,232 @@
       </h1>
 
       <p class="hero-subtitle" data-reveal data-reveal-delay="2">
-        Um modpack completo e client pessoal para Minecraft 1.21.1 com mods de performance integrados (Sodium/Lithium), tradução de chat em tempo real, HUD Studio e três identidades visuais ricas sem modificar seu menu oficial.
+        O modpack completo para Minecraft 1.21.1 já com Sodium, Lithium e FerriteCore configurados, tradutor de chat bidirecional, HUD Studio arrastável e 3 temas ricos com decorações exclusivas.
       </p>
 
       <div class="hero-cta-row" data-reveal data-reveal-delay="3">
         <a href="#menu-client" class="btn-primary">
-          <span>Explorar Menu In-Game</span>
+          <span>Abrir Menu ClickGUI</span>
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12m0 0l-5-5m5 5l5-5"/></svg>
         </a>
-        <button class="btn-secondary" data-discord-copy="caio">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028z"/></svg>
-          <span>Copiar Discord (@caio)</span>
+        <a href="#chat-tradutor" class="btn-secondary">
+          <span>Testar Chat & Tradutor In-Game</span>
+        </a>
+      </div>
+
+      <!-- Barra de Interação Ao Vivo para a Tela do Jogo abaixo -->
+      <div class="hero-mc-controls" data-reveal>
+        <button class="hero-mc-action-btn" id="hero-btn-next-slot">
+          <span>⚔️ Trocar Slot da Hotbar (Teclas 1–9)</span>
+        </button>
+        <button class="hero-mc-action-btn" id="hero-btn-damage">
+          <span>💔 Simular Dano & Regeneração</span>
+        </button>
+        <button class="hero-mc-action-btn" id="hero-btn-xp">
+          <span>✨ +1 Nível de XP</span>
+        </button>
+        <button class="hero-mc-action-btn" id="hero-btn-reset-hud">
+          <span>🖐️ Restaurar Posições do HUD</span>
         </button>
       </div>
 
-      <!-- TELA MINECRAFT IN-GAME VIVA (3D TILT COM HUD REAL) -->
-      <div class="mc-game-viewport-wrap" data-reveal>
+      <!-- TELA 100% FIEL AO MINECRAFT 1.21.1 COM HUD INTERATIVO ARRASTÁVEL -->
+      <div class="mc-game-viewport-wrap window-with-ornament" data-reveal>
+        <!-- Ornamentos reais de cristal/geodo/mina nos cantos da tela -->
+        <div class="window-corner-ornament tl"></div>
+        <div class="window-corner-ornament tr"></div>
+        <div class="window-pickaxe-ornament"></div>
+
         <div class="mc-game-screen" id="hero-game-screen">
-          <div class="mc-game-backdrop"></div>
+          <div class="mc-damage-overlay" id="hero-damage-overlay"></div>
 
-          <!-- HUD In-game: FPS, Ping e Status -->
-          <div class="mc-hud-fps-top mc-font">
-            <span class="mc-hud-badge-tag" style="color:#6ee7b7;">144 FPS · 18ms</span>
-            <span class="mc-hud-badge-tag" style="color:var(--primary-light);">Tema: <strong id="telemetry-theme">DIAMANTE</strong></span>
-            <span class="mc-hud-badge-tag" style="color:#fcd34d;">✧ Velocidade II (1:45)</span>
-          </div>
-
-          <!-- Mira Vanilla (Crosshair) -->
-          <div class="mc-crosshair"></div>
-
-          <!-- Scoreboard Minecraft -->
-          <div class="mc-scoreboard-demo mc-font">
-            <div class="mc-scoreboard-title">ROBSON RANKUP</div>
-            <div style="display:flex; justify-content:space-between;"><span>Rank:</span><span style="color:#38bdf8;">Diamante</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>Saldo:</span><span>125.000</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>Jogadores:</span><span>42/100</span></div>
-          </div>
-
-          <!-- Hotbar Autêntica com Vidas e Fome -->
-          <div class="mc-hotbar-container mc-font">
-            <div class="mc-status-bars">
-              <span class="mc-hearts">❤❤❤❤❤❤❤❤❤❤</span>
-              <span class="mc-level">30</span>
-              <span class="mc-hunger">🍗🍗🍗🍗🍗🍗🍗🍗🍗🍗</span>
+          <!-- 1. Robson Armor Status HUD (Topo Esquerdo - Arrastável) -->
+          <div class="robson-hud-armor robson-hud-draggable" data-default-top="12px" data-default-left="12px" title="Arraste para reposicionar o Status de Armadura">
+            <div class="robson-armor-row">
+              <div class="robson-armor-icon-wrap">
+                <img src="assets/mc/item-iron_helmet.png" class="pixelated" alt="Elmo">
+                <div class="robson-armor-bar"><i></i></div>
+              </div>
+              <span class="robson-armor-pct">100%</span>
             </div>
-            <div class="mc-hotbar-slots">
-              <div class="mc-slot active" title="Espada de Diamante">⚔️</div>
-              <div class="mc-slot" title="Picareta">⚒️</div>
-              <div class="mc-slot" title="Maçã Dourada">🍏</div>
-              <div class="mc-slot" title="Balde d'Água">🪣</div>
-              <div class="mc-slot" title="Arco">🏹</div>
-              <div class="mc-slot" title="Pérola do End">🔮</div>
-              <div class="mc-slot" title="Pão">🍞</div>
-              <div class="mc-slot" title="Foguetes">🚀</div>
-              <div class="mc-slot" title="Totem da Imortalidade">🗿</div>
+            <div class="robson-armor-row">
+              <div class="robson-armor-icon-wrap">
+                <img src="assets/mc/item-iron_chestplate.png" class="pixelated" alt="Peitoral">
+                <div class="robson-armor-bar"><i></i></div>
+              </div>
+              <span class="robson-armor-pct">100%</span>
+            </div>
+            <div class="robson-armor-row">
+              <div class="robson-armor-icon-wrap">
+                <img src="assets/mc/item-iron_leggings.png" class="pixelated" alt="Calça">
+                <div class="robson-armor-bar"><i></i></div>
+              </div>
+              <span class="robson-armor-pct">100%</span>
+            </div>
+            <div class="robson-armor-row">
+              <div class="robson-armor-icon-wrap">
+                <img src="assets/mc/item-iron_boots.png" class="pixelated" alt="Botas">
+                <div class="robson-armor-bar"><i></i></div>
+              </div>
+              <span class="robson-armor-pct">100%</span>
+            </div>
+          </div>
+
+          <!-- 2. Robson Potion Status Pill (Arrastável) -->
+          <div class="robson-hud-potion robson-hud-draggable" data-default-top="14px" data-default-left="96px" title="Arraste para reposicionar os Efeitos de Poção">
+            <img src="assets/mc/effect-speed.png" class="pixelated" alt="Velocidade">
+            <span id="hero-potion-timer">1:00</span>
+          </div>
+
+          <!-- 3. Robson FPS & Corrida Stack (Arrastável) -->
+          <div class="robson-hud-fps-stack robson-hud-draggable" data-default-top="155px" data-default-left="12px" title="Arraste para mover FPS e Corrida">
+            <div class="robson-fps-tag"><span id="hero-fps-num">144</span> <small>FPS</small></div>
+            <div class="robson-sprint-pill">Corrida</div>
+          </div>
+
+          <!-- 4. Boss Bar no Topo Central (Arrastável) -->
+          <div class="robson-hud-bossbar robson-hud-draggable mc-font" data-default-top="14px" data-default-left="calc(50% - 140px)" title="Arraste para reposicionar a Boss Bar">
+            <div class="robson-boss-title">Evento da mina · Ativo</div>
+            <div class="robson-boss-track">
+              <div class="robson-boss-fill"></div>
+            </div>
+          </div>
+
+          <!-- 5. Robson Inventory HUD (Arrastável - Idêntico à screenshot real) -->
+          <div class="robson-hud-inventory robson-hud-draggable" data-default-top="150px" data-default-left="235px" title="Arraste para mover o Inventário no HUD">
+            <div class="robson-inv-label">Local</div>
+            <div class="robson-inv-grid">
+              <div class="robson-inv-cell"></div>
+              <div class="robson-inv-cell"><img src="assets/mc/item-bread.png" class="pixelated" alt=""><span>32</span></div>
+              <div class="robson-inv-cell"><img src="assets/mc/item-torch.png" class="pixelated" alt=""><span>64</span></div>
+              <div class="robson-inv-cell"><img src="assets/mc/item-iron_pickaxe.png" class="pixelated" alt=""></div>
+              <div class="robson-inv-cell"><img src="assets/mc/item-diamond_pickaxe.png" class="pixelated" alt=""></div>
+              <div class="robson-inv-cell"><img src="assets/mc/item-diamond.png" class="pixelated" alt=""><span>12</span></div>
+              <div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div>
+              <div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div>
+              <div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div><div class="robson-inv-cell"></div>
+            </div>
+          </div>
+
+          <!-- 6. Scoreboard Vanilla (Arrastável) -->
+          <div class="robson-hud-scoreboard robson-hud-draggable mc-font" data-default-top="155px" data-default-right="22px" title="Arraste para mover a Scoreboard">
+            <div class="robson-sb-heading">ROBSON MINA</div>
+            <div class="robson-sb-line"><span>Pontos</span><span class="mc-c-aqua">125.000</span></div>
+            <div class="robson-sb-line"><span>Diamantes</span><span class="mc-c-green">36</span></div>
+            <div class="robson-sb-line"><span>Gens</span><span class="mc-c-gold">24</span></div>
+          </div>
+
+          <!-- 7. BARRAS DE STATUS E HOTBAR VANILLA 100% PIXEL-PERFECT (10 CORAÇÕES EM 1 LINHA!) -->
+          <div class="mc-bottom-hud-cluster">
+            <!-- Tooltip clássico do item selecionado -->
+            <div class="mc-item-tooltip mc-font" id="hero-item-tooltip">
+              <span id="hero-tooltip-name">Frasco de encantamentos</span>
+              <small id="hero-tooltip-lore">Clique nos slots (1-9) para trocar de item</small>
+            </div>
+
+            <!-- Linha 1: 10 Armaduras na esquerda + 6 Bolhas de Ar na direita -->
+            <div class="mc-bars-row">
+              <div class="mc-ten-icons" id="hero-armor-bar">
+                <img src="assets/mc/armor-full.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-full.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-full.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-full.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-full.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-full.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-full.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-half.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-empty.png" class="pixelated" alt="">
+                <img src="assets/mc/armor-empty.png" class="pixelated" alt="">
+              </div>
+              <div class="mc-ten-icons right" id="hero-air-bar">
+                <img src="assets/mc/air.png" class="pixelated" alt="">
+                <img src="assets/mc/air.png" class="pixelated" alt="">
+                <img src="assets/mc/air.png" class="pixelated" alt="">
+                <img src="assets/mc/air.png" class="pixelated" alt="">
+                <img src="assets/mc/air.png" class="pixelated" alt="">
+                <img src="assets/mc/air.png" class="pixelated" alt="">
+              </div>
+            </div>
+
+            <!-- Linha 2: 10 Corações Vermelhos em UMA ÚNICA LINHA + Nível 17 + 10 Fomes em UMA ÚNICA LINHA -->
+            <div class="mc-bars-row">
+              <div class="mc-ten-icons" id="hero-hearts-bar">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+                <img src="assets/mc/heart-full.png" class="pixelated" alt="❤">
+              </div>
+
+              <span class="mc-xp-level-num mc-font" id="hero-xp-level">17</span>
+
+              <div class="mc-ten-icons right" id="hero-food-bar">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+                <img src="assets/mc/food-full.png" class="pixelated" alt="🍗">
+              </div>
+            </div>
+
+            <!-- Linha 3: Barra de XP Segmentada Oficial -->
+            <div class="mc-xp-bar-wrap pixelated">
+              <div class="mc-xp-bar-fill pixelated" id="hero-xp-fill"></div>
+            </div>
+
+            <!-- Linha 4: Hotbar Oficial de 9 Slots com Seletor Interativo -->
+            <div class="mc-hotbar-real pixelated" id="hero-hotbar">
+              <div class="mc-hotbar-selector pixelated" id="hero-hotbar-selector"></div>
+
+              <button class="mc-hotbar-slot-btn" data-slot="0" data-item-name="Frasco de encantamentos" data-item-lore="Lança experiência ao quebrar">
+                <span class="mc-slot-key">1</span>
+                <img src="assets/mc/item-experience_bottle.png" class="pixelated" alt="">
+                <span class="mc-slot-count mc-font">6</span>
+              </button>
+              <button class="mc-hotbar-slot-btn" data-slot="1" data-item-name="Picareta de Ferro" data-item-lore="Eficiência IV · Inquebrável III">
+                <span class="mc-slot-key">2</span>
+                <img src="assets/mc/item-iron_pickaxe.png" class="pixelated" alt="">
+              </button>
+              <button class="mc-hotbar-slot-btn" data-slot="2" data-item-name="Machado de Ferro" data-item-lore=" +9 Dano de Ataque">
+                <span class="mc-slot-key">3</span>
+                <img src="assets/mc/item-iron_axe.png" class="pixelated" alt="">
+              </button>
+              <button class="mc-hotbar-slot-btn" data-slot="3" data-item-name="Pá de Ferro" data-item-lore="Toque Suave I">
+                <span class="mc-slot-key">4</span>
+                <img src="assets/mc/item-iron_shovel.png" class="pixelated" alt="">
+              </button>
+              <button class="mc-hotbar-slot-btn" data-slot="4" data-item-name="Espada de Diamante" data-item-lore="Afiação V · Saque III">
+                <span class="mc-slot-key">5</span>
+                <img src="assets/mc/item-diamond_sword.png" class="pixelated" alt="">
+              </button>
+              <button class="mc-hotbar-slot-btn" data-slot="5" data-item-name="Maçã Dourada" data-item-lore="Regeneração II (0:05) · Absorção (2:00)">
+                <span class="mc-slot-key">6</span>
+                <img src="assets/mc/item-golden_apple.png" class="pixelated" alt="">
+                <span class="mc-slot-count mc-font">12</span>
+              </button>
+              <button class="mc-hotbar-slot-btn" data-slot="6" data-item-name="Pérola do End" data-item-lore="Teleporte instantâneo">
+                <span class="mc-slot-key">7</span>
+                <img src="assets/mc/item-ender_pearl.png" class="pixelated" alt="">
+                <span class="mc-slot-count mc-font">16</span>
+              </button>
+              <button class="mc-hotbar-slot-btn" data-slot="7" data-item-name="Balde de Água" data-item-lore="MLG pronto">
+                <span class="mc-slot-key">8</span>
+                <img src="assets/mc/item-water_bucket.png" class="pixelated" alt="">
+              </button>
+              <button class="mc-hotbar-slot-btn" data-slot="8" data-item-name="Totem da Imortalidade" data-item-lore="Salva da morte uma vez">
+                <span class="mc-slot-key">9</span>
+                <img src="assets/mc/item-totem_of_undying.png" class="pixelated" alt="">
+              </button>
             </div>
           </div>
         </div>
@@ -137,19 +327,22 @@
     </div>
   </section>
 
-  <!-- SEÇÃO 1: O MENU IN-GAME (100% CLICÁVEL & SINCRONIZADO) -->
+  <!-- SEÇÃO 1: O MENU IN-GAME (100% CLICÁVEL & DECORADO PELO TEMA) -->
   <section id="menu-client" class="section">
     <div class="container">
       <div class="section-head" data-reveal>
-        <span class="badge">Experiência Viva</span>
-        <h2 class="section-title">O Menu In-Game 100% Clicável</h2>
+        <span class="badge">Interface In-Game</span>
+        <h2 class="section-title">O Menu ClickGUI 100% Interativo</h2>
         <p class="section-desc">
-          Navegue pela interface real do Robson Client diretamente nesta janela. Clique nas categorias laterais, abra os módulos visuais e de conveniência, teste os sliders e troque os temas para ver a sincronização imediata.
+          Navegue pela interface real do Robson Client. Clique nas categorias laterais, configure módulos, alterne para o Editor de HUD ou Chat Avançado e troque entre Diamante, Ametista e Esmeralda.
         </p>
       </div>
 
-      <!-- Monitor Frame -->
-      <div class="client-frame-window" data-reveal>
+      <div class="client-frame-window window-with-ornament" data-reveal>
+        <div class="window-corner-ornament tl"></div>
+        <div class="window-corner-ornament tr"></div>
+        <div class="window-pickaxe-ornament"></div>
+
         <div class="client-frame-topbar">
           <div class="window-dots">
             <span class="red"></span>
@@ -164,8 +357,8 @@
           </div>
 
           <div class="client-frame-actions">
-            <button class="btn-discord-nav" id="btn-toggle-decorations" style="padding:4px 10px; font-size:11px;" title="Alternar decorações visuais">
-              <span>Alternar Decorações</span>
+            <button class="btn-discord-nav" id="btn-toggle-decorations" style="padding:5px 12px; font-size:11px;">
+              <span>Alternar Decorações: ON</span>
             </button>
           </div>
         </div>
@@ -177,67 +370,231 @@
     </div>
   </section>
 
-  <!-- SEÇÃO 2: HUD STUDIO AO VIVO (LAB INTERATIVO + VÍDEO REAL) -->
-  <section id="hud-studio" class="section">
+  <!-- SEÇÃO 2: CHAT 100% FIEL AO MINECRAFT + ROBSON CHAT BAR + GOOGLE TRANSLATE -->
+  <section id="chat-tradutor" class="section">
     <div class="container">
       <div class="section-head" data-reveal>
-        <span class="badge">Customização Total</span>
-        <h2 class="section-title">HUD Studio em Tempo Real</h2>
+        <span class="badge">100% Fiel ao Jogo</span>
+        <h2 class="section-title">Robson Chat Bar & Tradutor Nativo</h2>
         <p class="section-desc">
-          Posicione cada indicador da tela com total liberdade. Arraste os elementos no simulador abaixo e confira ao lado a gravação real in-game rodando no Minecraft 1.21.1.
+          Idêntico à tela de chat do Minecraft 1.21.1: passe o mouse nas mensagens para usar o botão <strong>Copiar</strong>, abra a <strong>Robson Chat Bar</strong> (<code>AT</code>, <code>+</code>, <code>🔍</code>, <code>F</code>, <code>TR</code>) ou clique em <strong>TR</strong> para traduzir sua mensagem na barra via Google Translate antes de enviar!
         </p>
       </div>
 
       <div class="lab-grid">
-        <!-- Laboratório Interativo Drag & Drop -->
-        <div class="glass-panel" style="padding: 24px;" data-reveal>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span class="badge pulse">Arraste com o Mouse</span>
+        <!-- Tela de Chat Fiel ao Minecraft (idêntica a v14-chat-bar.png) -->
+        <div class="window-with-ornament" data-reveal>
+          <div class="window-corner-ornament tl"></div>
+          <div class="window-pickaxe-ornament"></div>
+
+          <div class="mc-chatscreen-stage" id="mc-chat-stage">
+            <!-- Modal In-Game 1: Robson · Seis AutoTexts (idêntico a v14-autotext.png) -->
+            <div class="robson-ingame-modal mc-font" id="modal-autotexts">
+              <div class="robson-modal-header">
+                <img src="assets/robson-logo.png" alt="R">
+                <h4>Robson · Seis AutoTexts</h4>
+                <button class="robson-modal-close mc-font" data-close-modal="modal-autotexts">Voltar</button>
+              </div>
+              <div style="font-size:12px; color:#94a3b8; margin-bottom:10px; text-align:left;">
+                Nome editável · * favorito · enviar respeita cooldown
+              </div>
+              <div class="robson-autotext-list">
+                <div class="robson-autotext-row">
+                  <button class="robson-at-fav mc-font">*</button>
+                  <input class="robson-at-input mc-font" value="/home mina">
+                  <button class="robson-at-btn mc-font" data-at-action="insert">Inserir</button>
+                  <button class="robson-at-btn mc-font" data-at-action="send">Enviar</button>
+                </div>
+                <div class="robson-autotext-row">
+                  <button class="robson-at-fav mc-font">*</button>
+                  <input class="robson-at-input mc-font" value="/g Alguém tem picareta com Eficiência V?">
+                  <button class="robson-at-btn mc-font" data-at-action="insert">Inserir</button>
+                  <button class="robson-at-btn mc-font" data-at-action="send">Enviar</button>
+                </div>
+                <div class="robson-autotext-row">
+                  <button class="robson-at-fav mc-font">-</button>
+                  <input class="robson-at-input mc-font" value="/warp mercado">
+                  <button class="robson-at-btn mc-font" data-at-action="insert">Inserir</button>
+                  <button class="robson-at-btn mc-font" data-at-action="send">Enviar</button>
+                </div>
+                <div class="robson-autotext-row">
+                  <button class="robson-at-fav mc-font">-</button>
+                  <input class="robson-at-input mc-font" value="/spawn">
+                  <button class="robson-at-btn mc-font" data-at-action="insert">Inserir</button>
+                  <button class="robson-at-btn mc-font" data-at-action="send">Enviar</button>
+                </div>
+                <div class="robson-autotext-row">
+                  <button class="robson-at-fav mc-font">-</button>
+                  <input class="robson-at-input mc-font" value="#Olá, alguém quer trocar diamantes?">
+                  <button class="robson-at-btn mc-font" data-at-action="insert">Inserir</button>
+                  <button class="robson-at-btn mc-font" data-at-action="send">Enviar</button>
+                </div>
+              </div>
             </div>
-            <span style="font-size:12px; font-weight:600; color:var(--primary-light);" id="hud-selected-name">Chat</span>
+
+            <!-- Modal In-Game 2: Robson · Símbolos e emojis (idêntico a v14-symbols.png) -->
+            <div class="robson-ingame-modal mc-font" id="modal-symbols">
+              <div class="robson-modal-header">
+                <img src="assets/robson-logo.png" alt="R">
+                <h4>Robson · Símbolos e emojis</h4>
+                <button class="robson-modal-close mc-font" data-close-modal="modal-symbols">Voltar</button>
+              </div>
+              <div class="robson-symbols-list">
+                <button class="robson-symbol-bar mc-font" data-insert-symbol="→">→ Direita</button>
+                <button class="robson-symbol-bar mc-font" data-insert-symbol="←">← Esquerda</button>
+                <button class="robson-symbol-bar mc-font" data-insert-symbol="★">★ Estrela</button>
+                <button class="robson-symbol-bar mc-font" data-insert-symbol="❤">❤ Coração</button>
+                <button class="robson-symbol-bar mc-font" data-insert-symbol="⚔">⚔ Espadas Cruzadas</button>
+                <button class="robson-symbol-bar mc-font" data-insert-symbol="✧">✧ Brilho</button>
+                <button class="robson-symbol-bar mc-font" data-insert-symbol="»">» Avançar Duplo</button>
+              </div>
+            </div>
+
+            <!-- Vanilla ChatHud (Canto inferior esquerdo acima da hotbar) -->
+            <div class="mc-vanilla-chathud mc-font" id="chat-sim-messages">
+              <div class="mc-chat-entry">
+                <div><span class="mc-c-white">Seed: [</span><span class="mc-c-green">42701</span><span class="mc-c-white">]</span></div>
+                <button class="mc-copy-chip" data-copy-text="Seed: [42701]">Copiar</button>
+              </div>
+              <div class="mc-chat-entry">
+                <div><span class="mc-c-gold">[EnchantedMC]</span> <span class="mc-c-white">Bem-vindo! Mina Diamante reinicia em 5 minutos.</span><span class="mc-translated-tag">EN→PT</span></div>
+                <button class="mc-copy-chip" data-copy-text="[EnchantedMC] Bem-vindo! Mina Diamante reinicia em 5 minutos.">Copiar</button>
+              </div>
+              <div class="mc-chat-entry">
+                <div><span class="mc-c-aqua">&lt;Steve_US&gt;</span> <span class="mc-c-white">Alguém tem picareta de diamante para trocar?</span><span class="mc-translated-tag" title="Original: Does anyone have a diamond pickaxe to trade?">EN→PT</span></div>
+                <button class="mc-copy-chip" data-copy-text="<Steve_US> Alguém tem picareta de diamante para trocar?">Copiar</button>
+              </div>
+              <div class="mc-chat-entry">
+                <div><span class="mc-c-yellow">&lt;Kayoba15_&gt;</span> <span class="mc-c-white">I have one with Efficiency V at spawn!</span><span class="mc-translated-tag">PT→EN</span></div>
+                <button class="mc-copy-chip" data-copy-text="<Kayoba15_> I have one with Efficiency V at spawn!">Copiar</button>
+              </div>
+              <div class="mc-chat-entry">
+                <div><span class="mc-c-gray">Robson Client ·</span> <span class="mc-c-white">Tradutor de chat ativo (digite ou clique em TR)</span></div>
+                <button class="mc-copy-chip" data-copy-text="Robson Client · Tradutor de chat ativo">Copiar</button>
+              </div>
+            </div>
+
+            <!-- Barra de Status & Hotbar no fundo do ChatScreen (igual à screenshot v14-chat-bar.png) -->
+            <div class="mc-bottom-hud-cluster" style="bottom: 36px; transform: translateX(-50%) scale(0.82); transform-origin: bottom center; opacity: 0.9;">
+              <div class="mc-bars-row">
+                <div class="mc-ten-icons">
+                  <img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt=""><img src="assets/mc/heart-full.png" class="pixelated" alt="">
+                </div>
+                <span class="mc-xp-level-num mc-font">15</span>
+                <div class="mc-ten-icons right">
+                  <img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt=""><img src="assets/mc/food-full.png" class="pixelated" alt="">
+                </div>
+              </div>
+              <div class="mc-xp-bar-wrap pixelated"><div class="mc-xp-bar-fill pixelated" style="width:100%"></div></div>
+              <div class="mc-hotbar-real pixelated">
+                <div class="mc-hotbar-selector pixelated"></div>
+                <div class="mc-hotbar-slot-btn"><img src="assets/mc/item-experience_bottle.png" class="pixelated" alt=""><span class="mc-slot-count mc-font">6</span></div>
+                <div class="mc-hotbar-slot-btn"><img src="assets/mc/item-iron_pickaxe.png" class="pixelated" alt=""></div>
+                <div class="mc-hotbar-slot-btn"><img src="assets/mc/item-iron_axe.png" class="pixelated" alt=""></div>
+                <div class="mc-hotbar-slot-btn"><img src="assets/mc/item-iron_shovel.png" class="pixelated" alt=""></div>
+              </div>
+            </div>
+
+            <!-- A PÍLULA OFICIAL ROBSON CHAT BAR (idêntica a RobsonChatBar.java & v14-chat-bar.png) -->
+            <div class="robson-chatbar-pill">
+              <div class="robson-pill-brand">
+                <img src="assets/robson-logo.png" alt="R">
+              </div>
+              <button class="robson-pill-btn" id="chat-btn-autotext" data-mc-tooltip="Robson Client · Seis AutoTexts">AT</button>
+              <button class="robson-pill-btn" id="chat-btn-symbols" data-mc-tooltip="Robson Client · Símbolos e emojis">+</button>
+              <button class="robson-pill-btn" id="chat-btn-search" data-mc-tooltip="Robson Client · Buscar mensagens">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+              </button>
+              <button class="robson-pill-btn active" id="chat-btn-filters" data-mc-tooltip="Robson Client · Filtros locais">F</button>
+              <button class="robson-pill-btn active" id="chat-btn-tr" data-mc-tooltip="Robson Client · Traduzir mensagem (PT ↔ EN)">TR</button>
+              <button class="robson-pill-btn" id="chat-btn-more" data-mc-tooltip="Robson Client · Configurar Chat Bar">...</button>
+            </div>
+
+            <!-- A BARRA DE DIGITAÇÃO VANILLA DO MINECRAFT NO RODAPÉ -->
+            <div class="mc-vanilla-input-bar">
+              <input type="text" class="mc-vanilla-input mc-font" id="chat-sim-input" placeholder="Digite em PT ou EN (ou clique em TR para traduzir na barra)...">
+              <span class="mc-live-trans-preview" id="chat-sim-trans-preview">🌐 Google Translate Pronto</span>
+              <button class="mc-vanilla-send-btn" id="chat-sim-send">Enviar ↵</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vídeo Real In-Game (Crop de CSS) -->
+        <div class="video-showcase-box window-with-ornament" data-reveal data-reveal-delay="1">
+          <div class="window-corner-ornament tr"></div>
+          <div class="video-showcase-header">
+            <span>● Demonstração In-Game (Minecraft 1.21.1)</span>
+            <span class="badge">Chat & Tradutor</span>
+          </div>
+          <div class="video-crop-viewport">
+            <video src="media/chat-translator.mp4" poster="media/v14-chat-bar.png" controls loop muted playsinline></video>
+          </div>
+          <div class="video-caption">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
+            <span>Tradução nativa no próprio chat do Minecraft, botão Copiar por linha e 6 AutoTexts.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3: HUD STUDIO AO VIVO (LAB INTERATIVO + VÍDEO REAL) -->
+  <section id="hud-studio" class="section">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="badge">Robson HUD Studio</span>
+        <h2 class="section-title">Edição de HUD em Tela Cheia 1:1</h2>
+        <p class="section-desc">
+          Arraste qualquer elemento da tela com grade de precisão, regule opacidade, escala e bordas em tempo real.
+        </p>
+      </div>
+
+      <div class="lab-grid">
+        <div class="glass-panel window-with-ornament" style="padding: 22px;" data-reveal>
+          <div class="window-corner-ornament tl"></div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <span class="badge pulse">Arraste os Elementos no Canvas</span>
+            <span style="font-size:12px; font-weight:600; color:var(--primary-light);">Selecionado: <strong id="hud-selected-name">Chat Box</strong></span>
           </div>
 
-          <!-- Canvas Minecraft com elementos arrastáveis -->
           <div class="hud-lab-canvas" id="hud-interactive-canvas">
             <div class="hud-canvas-grid-lines"></div>
 
-            <!-- FPS & Ping -->
-            <div class="hud-drag-item mc-font" id="hud-drag-fps" data-name="FPS & Ping" style="top:20px; left:20px;">
-              <span class="hud-item-handle">FPS / Ping</span>
-              <div style="color:#6ee7b7;">144 FPS <span style="color:#94a3b8;">· 18ms</span></div>
-            </div>
-
-            <!-- Boss Bar -->
-            <div class="hud-drag-item mc-font" id="hud-drag-boss" data-name="Boss Bar" style="top:15px; left:calc(50% - 130px); width:260px; text-align:center;">
-              <span class="hud-item-handle">Boss Bar</span>
-              <div style="font-size:13px; margin-bottom:4px;">✧ Evento da Mina Diamante</div>
-              <div style="height:6px; background:#2c1b3d; border-radius:2px; overflow:hidden;">
-                <div style="width:70%; height:100%; background:linear-gradient(90deg, #a855f7, #c084fc);"></div>
+            <div class="hud-drag-item mc-font" id="hud-drag-fps" data-name="Armadura & FPS" style="top:16px; left:16px;">
+              <span class="hud-item-handle">Armadura / FPS</span>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <img src="assets/mc/item-diamond_chestplate.png" class="pixelated" width="16" height="16" alt="">
+                <span style="color:#6ee7b7;">100% · 144 FPS</span>
               </div>
             </div>
 
-            <!-- Scoreboard -->
-            <div class="hud-drag-item mc-font" id="hud-drag-scoreboard" data-name="Scoreboard" style="top:40px; right:20px; width:160px;">
-              <span class="hud-item-handle">Scoreboard</span>
-              <div style="color:#fcd34d; font-weight:bold; text-align:center; margin-bottom:4px;">ROBSON RANKUP</div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Rank:</span><span style="color:#38bdf8;">Diamante</span></div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Saldo:</span><span>125.000</span></div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Jogadores:</span><span>42</span></div>
+            <div class="hud-drag-item mc-font" id="hud-drag-boss" data-name="Boss Bar" style="top:14px; left:calc(50% - 130px); width:260px; text-align:center;">
+              <span class="hud-item-handle">Boss Bar</span>
+              <div style="font-size:12px; margin-bottom:4px;">Evento da mina · Ativo</div>
+              <div style="height:6px; background:#2c1b3d; border:1px solid #581c87;">
+                <div style="width:70%; height:100%; background:#a855f7;"></div>
+              </div>
             </div>
 
-            <!-- Chat Box -->
-            <div class="hud-drag-item selected mc-font" id="hud-drag-chat" data-name="Chat Box" style="bottom:20px; left:20px; width:300px;">
+            <div class="hud-drag-item mc-font" id="hud-drag-scoreboard" data-name="Scoreboard" style="top:50px; right:18px; width:165px;">
+              <span class="hud-item-handle">Scoreboard</span>
+              <div style="color:#ffffff; font-weight:bold; margin-bottom:4px;">ROBSON RANKUP</div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Pontos</span><span class="mc-c-aqua">125.000</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Diamantes</span><span class="mc-c-green">36</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Gens</span><span class="mc-c-gold">24</span></div>
+            </div>
+
+            <div class="hud-drag-item selected mc-font" id="hud-drag-chat" data-name="Chat Box" style="bottom:18px; left:18px; width:290px;">
               <span class="hud-item-handle">Chat · Arraste para mover</span>
-              <div style="font-size:13px; line-height:1.5;">
-                <div><span style="color:#38bdf8;">[RankUp]</span> Mina liberada!</div>
-                <div><span style="color:#f59e0b;">&lt;Caio&gt;</span> Partiu minerar.</div>
-                <div><span style="color:#a78bfa;">&lt;Luna&gt;</span> Picareta pronta!</div>
+              <div style="font-size:12px; line-height:1.45;">
+                <div><span class="mc-c-white">Seed: [</span><span class="mc-c-green">42701</span><span class="mc-c-white">]</span></div>
+                <div><span class="mc-c-aqua">&lt;Kayoba15_&gt;</span> Robson Client · chat reposicionado</div>
+                <div><span class="mc-c-gold">[RankUp]</span> Mina Diamante liberada!</div>
               </div>
             </div>
           </div>
 
-          <!-- Controles do HUD -->
           <div class="lab-controls-panel">
             <div class="lab-control-group">
               <label for="hud-slider-opacity">Opacidade:</label>
@@ -246,7 +603,7 @@
             </div>
 
             <div class="lab-control-group">
-              <label for="hud-slider-scale">Escala:</label>
+              <label for="hud-slider-scale">Tamanho:</label>
               <input type="range" id="hud-slider-scale" min="0.7" max="1.4" step="0.05" value="1.0">
               <span id="hud-val-scale">1.0x</span>
             </div>
@@ -254,234 +611,129 @@
             <div class="lab-control-group">
               <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
                 <input type="checkbox" id="hud-toggle-grid" checked>
-                <span>Grade de alinhamento</span>
+                <span>Grade</span>
               </label>
             </div>
 
-            <button class="mc-chatbar-btn" id="hud-reset-positions" style="margin-left:auto;">
-              <span>Restaurar Padrão</span>
+            <button class="hero-mc-action-btn" id="hud-reset-positions" style="margin-left:auto; padding:5px 12px;">
+              <span>Restaurar</span>
             </button>
           </div>
         </div>
 
-        <!-- Vídeo Real In-Game (Crop de CSS) -->
-        <div class="video-showcase-box" data-reveal data-reveal-delay="1">
+        <div class="video-showcase-box window-with-ornament" data-reveal data-reveal-delay="1">
+          <div class="window-corner-ornament tr"></div>
           <div class="video-showcase-header">
-            <span>● Gravação In-Game (Minecraft 1.21.1)</span>
+            <span>● Editor de HUD In-Game (Minecraft 1.21.1)</span>
             <span class="badge">HUD Studio</span>
           </div>
           <div class="video-crop-viewport">
-            <video src="media/hud-studio.mp4" autoplay loop muted playsinline></video>
+            <video src="media/hud-studio.mp4" poster="media/v141-hud-live.png" controls loop muted playsinline></video>
           </div>
           <div class="video-caption">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
-            <span>Edição suave de scoreboard, chat e elementos com grade de precisão e persistência.</span>
+            <span>Inspeção individual de tamanho, opacidade, espaçamento, fundo e brilho da borda.</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SEÇÃO 3: CHAT 100% ESTILO MINECRAFT & TRADUTOR GOOGLE REAL -->
-  <section id="chat-tradutor" class="section">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <span class="badge">100% Estilo Minecraft</span>
-        <h2 class="section-title">Chat Inteligente & Tradutor Nativo</h2>
-        <p class="section-desc">
-          Converse em qualquer servidor gringo sem barreiras. Digite qualquer frase abaixo em português ou inglês para ver o tradutor nativo via Google Translate responder ao vivo!
-        </p>
-      </div>
-
-      <div class="lab-grid">
-        <!-- Chat Minecraft Autêntico -->
-        <div class="mc-chat-container mc-font" data-reveal>
-          <!-- Mensagens do Chat -->
-          <div class="mc-chat-messages-box" id="chat-sim-messages">
-            <div class="mc-chat-line">
-              <span class="mc-c-server">[EnchantedMC]</span> <span class="mc-c-white">Welcome to the server! Use /help for commands.</span>
-            </div>
-            <div class="mc-chat-line">
-              <span class="mc-c-player">&lt;Steve_US&gt;</span> <span class="mc-c-white">Does anyone want to trade diamonds for netherite?</span>
-              <span class="mc-c-trans">🌐 Traduzido: "Alguém quer trocar diamantes por netherite?"</span>
-            </div>
-            <div class="mc-chat-line">
-              <span class="mc-c-rank">&lt;[VIP] Caio&gt;</span> <span class="mc-c-white">I have 32 diamonds ready to trade!</span>
-              <span class="mc-c-trans">🌐 Traduzido: "Eu tenho 32 diamantes prontos para trocar!"</span>
-            </div>
-          </div>
-
-          <!-- Indicador da Tradução Automática -->
-          <div class="mc-translator-status-bar" id="chat-sim-trans-preview">
-            Digite algo em português ou inglês para testar a tradução via Google...
-          </div>
-
-          <!-- Robson Chat Bar (Ações Rápidas Oficiais) -->
-          <div class="mc-chatbar-buttons">
-            <!-- Botão AT com Popover -->
-            <div style="position:relative;">
-              <button class="mc-chatbar-btn" id="chat-btn-autotext" title="Atalhos rápidos de texto">
-                <strong>[AT]</strong> AutoTexts
-              </button>
-              <div class="sim-popover" id="chat-popover-autotext">
-                <div style="font-size:12px; color:#aaa; margin-bottom:6px;">6 ATALHOS RÁPIDOS</div>
-                <div class="popover-grid-buttons">
-                  <button data-autotext="/home">/home</button>
-                  <button data-autotext="/mina">/mina</button>
-                  <button data-autotext="/spawn">/spawn</button>
-                  <button data-autotext="/pvp">/pvp</button>
-                  <button data-autotext="/g Olá a todos!">/g Olá!</button>
-                  <button data-autotext="/r Picareta pronta.">/r Resposta</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Botão Símbolos com Popover -->
-            <div style="position:relative;">
-              <button class="mc-chatbar-btn" id="chat-btn-symbols" title="Símbolos e emojis">
-                ✧ Símbolos
-              </button>
-              <div class="sim-popover" id="chat-popover-symbols">
-                <div style="font-size:12px; color:#aaa; margin-bottom:6px;">CARACTERES MINECRAFT</div>
-                <div class="popover-grid-buttons">
-                  <button>✧</button>
-                  <button>⚒</button>
-                  <button>⚔</button>
-                  <button>★</button>
-                  <button>❤</button>
-                  <button>⚡</button>
-                </div>
-              </div>
-            </div>
-
-            <button class="mc-chatbar-btn" title="Histórico de até 2000 linhas">
-              🔍 2000 Linhas
-            </button>
-            <button class="mc-chatbar-btn" title="Tradução Nativa Ativa" style="color:var(--primary-light);">
-              🌐 Traduzir (EN ↔ PT)
-            </button>
-          </div>
-
-          <!-- Input Minecraft com Cursor -->
-          <div class="mc-input-wrap">
-            <input type="text" class="mc-chat-input mc-font" id="chat-sim-input" placeholder="Digite uma mensagem (ex: Alguem pode me ajudar?)...">
-            <button class="mc-send-btn mc-font" id="chat-sim-send">Enviar</button>
-          </div>
-        </div>
-
-        <!-- Vídeo Real In-Game (Crop de CSS) -->
-        <div class="video-showcase-box" data-reveal data-reveal-delay="1">
-          <div class="video-showcase-header">
-            <span>● Servidor Global (Tradução In-Game)</span>
-            <span class="badge">Chat & Tradutor</span>
-          </div>
-          <div class="video-crop-viewport">
-            <video src="media/chat-translator.mp4" autoplay loop muted playsinline></video>
-          </div>
-          <div class="video-caption">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
-            <span>Tradução simultânea sem sair do jogo, com suporte a menções e filtros anti-spam.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEÇÃO 4: BENTO GRID DE FUNCIONALIDADES & PERFORMANCE -->
+  <!-- SEÇÃO 4: BENTO GRID COM ARTWORK DOS TEMAS -->
   <section id="funcionalidades" class="section">
     <div class="container">
       <div class="section-head" data-reveal>
-        <span class="badge">Arquitetura Fabric</span>
-        <h2 class="section-title">Módulos & Otimização Pesada</h2>
+        <span class="badge">Modpack Modrinth</span>
+        <h2 class="section-title">Performance & Acabamento</h2>
         <p class="section-desc">
-          Um cliente modular e leve empacotado para o Modrinth. Sem bloatware, sem alterar seu menu vanilla e 100% compatível com mods de performance.
+          Três temas com materiais e decorações próprias (Diamante, Ametista e Esmeralda) mantendo exatamente a mesma geometria funcional e fluidez.
         </p>
       </div>
 
       <div class="bento-grid">
-        <!-- Card 1: Performance Máxima -->
         <div class="glass-panel bento-card col-span-2" data-reveal>
+          <div class="bento-card-artwork"></div>
           <div class="bento-icon">
             <svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
-          <h3>Performance Máxima & Otimização no Modrinth</h3>
+          <h3>Modpack Otimizado no Modrinth (Sodium + Lithium)</h3>
           <p>
-            O pacote do Modrinth já inclui Sodium, Lithium, ImmediatelyFast, FerriteCore e Entity Culling pré-configurados. Carregamento de chunks sem engasgos, FPS nas alturas e consumo mínimo de memória RAM.
+            A distribuição completa já traz os mods de desempenho mais respeitados do ecossistema Fabric 1.21.1 pré-ajustados, enquanto o JAR principal continua 100% independente para rodar em qualquer instalação.
           </p>
 
           <div style="display:flex; justify-content:space-around; align-items:center; margin-top:20px; padding:16px; background:rgba(0,0,0,0.35); border-radius:var(--card-radius); border:1px solid var(--border-subtle);">
             <div>
-              <div style="font-size:24px; font-weight:800; color:var(--primary-light);">144+ FPS</div>
-              <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Taxa Estável</div>
+              <div style="font-size:22px; font-weight:800; color:var(--primary-light);">1.21.1</div>
+              <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Fabric Nativo</div>
             </div>
             <div style="width:1px; height:32px; background:rgba(255,255,255,0.1);"></div>
             <div>
-              <div style="font-size:24px; font-weight:800; color:#34d399;">0ms Drop</div>
-              <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Latência Nula</div>
+              <div style="font-size:22px; font-weight:800; color:#34d399;">3 Temas</div>
+              <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Com Decorações</div>
             </div>
             <div style="width:1px; height:32px; background:rgba(255,255,255,0.1);"></div>
             <div>
-              <div style="font-size:24px; font-weight:800; color:#38bdf8;">Java 21</div>
-              <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Fabric 1.21.1</div>
+              <div style="font-size:22px; font-weight:800; color:#38bdf8;">Vanilla Menu</div>
+              <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">100% Preservado</div>
             </div>
           </div>
         </div>
 
-        <!-- Card 2: Visual Sem Distrações -->
         <div class="glass-panel bento-card" data-reveal data-reveal-delay="1">
+          <div class="bento-card-artwork"></div>
           <div class="bento-icon">
             <svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6Z M13 10a3 3 0 1 1-6 0 3 3 0 1 1 6 0"/></svg>
           </div>
-          <h3>Visuais & Nitidez</h3>
+          <h3>Visuais Limpos In-Game</h3>
           <p>
-            Água cristalina, remoção do tremor de dano da câmera, fullbright instantâneo sem perda de FPS e contorno suave de blocos.
+            Zoom suave, água clara, sem tremor de dano, sem fogo cobrindo a tela, brilho máximo e câmera estável.
           </p>
         </div>
 
-        <!-- Card 3: Filtros de Chat Locais -->
         <div class="glass-panel bento-card" data-reveal>
+          <div class="bento-card-artwork"></div>
           <div class="bento-icon">
             <svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h14l-6 7v6l-2-1v-5Z"/></svg>
           </div>
-          <h3>Filtros de Chat Inteligentes</h3>
+          <h3>Filtros & 2000 Linhas</h3>
           <p>
-            Bloqueio de spam repetido, detecção por RegEx, termos proibidos configuráveis e destaque visual sempre que seu nome for mencionado.
+            Histórico estendido de até 2000 mensagens, busca instantânea, botão Copiar em cada linha e destaque de menções.
           </p>
         </div>
 
-        <!-- Card 4: Menu Vanilla 100% Preservado -->
         <div class="glass-panel bento-card" data-reveal data-reveal-delay="1">
+          <div class="bento-card-artwork"></div>
           <div class="bento-icon">
             <svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h14v14H3z M6 7h8 M6 10h3"/></svg>
           </div>
-          <h3>Menu Vanilla Intacto</h3>
+          <h3>Inventário & Utilidades</h3>
           <p>
-            A tela inicial oficial do Minecraft permanece 100% original. A personalização do Robson Client é ativada in-game, mantendo sua instalação limpa e segura.
+            Prévia de Shulker Box, aviso de durabilidade baixa, rolagem rápida de itens e limpeza de scoreboard.
           </p>
         </div>
 
-        <!-- Card 5: Arquitetura Fabric Aberta -->
         <div class="glass-panel bento-card" data-reveal data-reveal-delay="2">
+          <div class="bento-card-artwork"></div>
           <div class="bento-icon">
             <svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l4 4-8 8-4-4Z M2 18h4"/></svg>
           </div>
-          <h3>Compatibilidade Aberta</h3>
+          <h3>Menu Inicial Vanilla</h3>
           <p>
-            JAR independente que pode ser utilizado em qualquer perfil Fabric com outros mods compatíveis, sem forçar launchers fechados.
+            Sem telas iniciais invasivas: o Minecraft inicia 100% original e todo o poder do Robson Client vive dentro da partida.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SEÇÃO 5: GALERIA IN-GAME (LIGHTBOX) -->
+  <!-- SEÇÃO 5: GALERIA DE CAPTURAS REAIS IN-GAME -->
   <section id="galeria" class="section">
     <div class="container">
       <div class="section-head" data-reveal>
-        <span class="badge">Galeria Visual</span>
-        <h2 class="section-title">Capturas Reais do Robson Client</h2>
+        <span class="badge">Capturas Reais no Minecraft</span>
+        <h2 class="section-title">Galeria In-Game (V1.4.2)</h2>
         <p class="section-desc">
-          Clique nas imagens para ampliar e conferir a fidelidade das interfaces e menus do client in-game.
+          Clique em qualquer captura real para ampliar e ver os detalhes dos temas Diamante, Ametista e Esmeralda dentro do Minecraft.
         </p>
       </div>
 
@@ -490,7 +742,7 @@
           <img src="media/v141-diamante.png" alt="Tema Diamante In-Game" loading="lazy">
           <div class="gallery-item-overlay">
             <span>Tema Diamante</span>
-            <small>Corte Mineral Lapidado</small>
+            <small>Corte Diamante · Picareta & Cristais</small>
           </div>
         </div>
 
@@ -498,7 +750,7 @@
           <img src="media/v141-ametista.png" alt="Tema Ametista In-Game" loading="lazy">
           <div class="gallery-item-overlay">
             <span>Tema Ametista</span>
-            <small>Estratos de Geodo</small>
+            <small>Geodo Ametista · Cristais & Cobre</small>
           </div>
         </div>
 
@@ -506,15 +758,15 @@
           <img src="media/v141-esmeralda.png" alt="Tema Esmeralda In-Game" loading="lazy">
           <div class="gallery-item-overlay">
             <span>Tema Esmeralda</span>
-            <small>Oficina de Deepslate</small>
+            <small>Mina Esmeralda · Deepslate & Lanterna</small>
           </div>
         </div>
 
-        <div class="gallery-item" data-gallery-src="media/editor-hud.png">
-          <img src="media/editor-hud.png" alt="Editor de HUD In-Game" loading="lazy">
+        <div class="gallery-item" data-gallery-src="media/v141-hud-live.png">
+          <img src="media/v141-hud-live.png" alt="HUD Studio Ao Vivo" loading="lazy">
           <div class="gallery-item-overlay">
-            <span>Editor de HUD</span>
-            <small>Ajustes de Opacidade e Escala</small>
+            <span>Robson HUD Studio</span>
+            <small>Edição em Tela Cheia 1:1</small>
           </div>
         </div>
 
@@ -522,15 +774,15 @@
           <img src="media/v14-chat-bar.png" alt="Robson Chat Bar" loading="lazy">
           <div class="gallery-item-overlay">
             <span>Robson Chat Bar</span>
-            <small>Ações Rápidas e Tradução</small>
+            <small>Barra Rápida no Chat Vanilla</small>
           </div>
         </div>
 
-        <div class="gallery-item" data-gallery-src="media/v14-symbols.png">
-          <img src="media/v14-symbols.png" alt="Seletor de Símbolos" loading="lazy">
+        <div class="gallery-item" data-gallery-src="media/v14-autotext.png">
+          <img src="media/v14-autotext.png" alt="Seis AutoTexts" loading="lazy">
           <div class="gallery-item-overlay">
-            <span>Seletor de Símbolos</span>
-            <small>Caracteres Especiais e Emojis</small>
+            <span>Seis AutoTexts</span>
+            <small>Atalhos Rápidos Editáveis</small>
           </div>
         </div>
       </div>
@@ -551,20 +803,19 @@
           <img src="assets/robson-logo.png" alt="Robson Logo">
           <div class="footer-info">
             <h4>Robson Client</h4>
-            <p>Projeto pessoal desenvolvido por Caio · Minecraft 1.21.1 Fabric no Modrinth</p>
+            <p>Desenvolvido por Caio · Modpack & Client Minecraft 1.21.1 Fabric</p>
           </div>
         </div>
 
         <div class="footer-actions">
           <button class="btn-primary" data-discord-copy="caio">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028z"/></svg>
             <span>Falar no Discord (@caio)</span>
           </button>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>Robson Client é um projeto independente para Minecraft 1.21.1 Fabric. Não é um produto oficial da Mojang Studios nem da Microsoft.</p>
+        <p>Robson Client é um projeto independente para Minecraft 1.21.1 Fabric. Não é um produto oficial da Mojang Studios nem afiliado à Microsoft.</p>
       </div>
     </div>
   </footer>
