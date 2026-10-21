@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robson Client · Interface In-Game</title>
+  <link rel="stylesheet" href="css/client-menu.css">
+  <link rel="stylesheet" href="css/client-refinement.css">
+  <style>
+    /* Styling adjustments specifically for embed inside showcase */
+    html, body {
+      background: transparent !important;
+      overflow: hidden;
+      user-select: none;
+    }
+    #review-tools {
+      display: none !important; /* Hide internal debug bar; controlled by showcase */
+    }
+    #app {
+      min-height: 100vh !important;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+    .app-window, .hud-window {
+      width: 100% !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      border-radius: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="review-tools" style="display:none">
+    <nav id="theme-switch"></nav>
+    <nav id="screen-switch"></nav>
+  </div>
+  <main id="app"></main>
+  <div id="demo-notice" role="status" aria-live="polite"></div>
+  <script src="js/client-menu.js"></script>
+</body>
+</html>

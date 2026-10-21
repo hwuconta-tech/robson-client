@@ -1,0 +1,85 @@
+/* Material skins only. Functional geometry and font metrics belong to styles.css. */
+
+/* Diamante: superfícies lapidadas, face mineral fria e linhas de luz contidas. */
+#app.diamante{--text:#e8f0f4;--muted:#9cacb5;--line:#4b6875;--accent:#a2dddf;--accent-dark:#142e38;--ground:#111f29;--panel:#233946;--input:#152a35;--raised:#2b4a56;--inspector:#233946}
+.diamante .app-window,.diamante .hud-window{border-color:#668994;border-radius:10px;box-shadow:0 20px 45px #0005,0 1px 0 #c8f1ef33 inset}
+.diamante .topbar,.diamante .hud-topbar{background:linear-gradient(116deg,#263e4b 0,#1a2e3b 48%,#223e4b 80%,#152b36 100%);box-shadow:0 1px 0 #9cddda22 inset}
+.diamante .brand-caption{color:#accfd3}.diamante .rail{background:linear-gradient(110deg,#1d323d,#152732)}
+.diamante .work-space,.diamante .chat-space{background:linear-gradient(145deg,#10232d,#101e28)}
+.diamante .rail-button,.diamante .module-item,.diamante .segments,.diamante .keybind-button,.diamante input{border-radius:4px}
+.diamante .rail-button.active,.diamante .module-item.selected{background:linear-gradient(100deg,#2c4b57,#233a48);box-shadow:0 1px 0 #b0e6e51a inset}
+.diamante .module-hero{border-radius:7px 7px 0 0;background:linear-gradient(115deg,#314e5b,#263e4b 62%,#335664)}
+.diamante .module-hero:before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(118deg,transparent 69%,#b9e5e914 69%,#b9e5e908 73%,transparent 73%);box-shadow:0 3px 0 #b4e0df55 inset}
+.diamante .settings-body{background:linear-gradient(135deg,#263e4b,#203541);border-radius:0 0 7px 7px;box-shadow:0 1px 0 #b5dadb18 inset}
+.diamante .segments button.active,.diamante .hud-selection-tabs button.active{background:linear-gradient(#365361,#2a4553);box-shadow:0 1px 0 #bce4e426 inset}
+.diamante .toggle{border-radius:4px}.diamante .toggle:before{border-radius:2px}
+.diamante .theme-stamp{background:linear-gradient(135deg,#34606a,#223d4b);border-color:#709ca2}
+.diamante .bottom-bar,.diamante .hud-bottom{background:linear-gradient(100deg,#213946,#152b36)}
+.diamante .reply-box,.diamante .search-box,.diamante .primary-button,.diamante .secondary-button{border-radius:4px}
+.diamante .reply-box{background:linear-gradient(100deg,#2a4350,#203641);box-shadow:0 1px 0 #b6d9db20 inset}
+.diamante .chat-results{background:linear-gradient(120deg,#12232d,#142833)}
+.diamante .hud-inspector{background:linear-gradient(135deg,#2b4653,#233946)}
+.diamante .hud-inspector .page-heading{box-shadow:0 1px 0 #a0d1d326}
+.diamante .primary-button{background:linear-gradient(#b4e6e4,#92cccf);box-shadow:0 1px 0 #e5ffff55 inset}
+.diamante .secondary-button{background:linear-gradient(#385762,#2c4654)}
+
+/* Ametista: estratos de geodo e basalto; cobre separa superfícies sem mover controles. */
+#app.ametista{--text:#f0eaf2;--muted:#b9aabb;--line:#735b79;--accent:#d5b5e6;--accent-dark:#35233e;--ground:#251e2d;--panel:#3a2d43;--input:#2c2235;--raised:#584264;--inspector:#36293f}
+.ametista .app-window,.ametista .hud-window{border-color:#92758e;border-radius:19px;box-shadow:0 20px 45px #0005,0 1px 0 #dfbfe425 inset}
+.ametista .topbar,.ametista .hud-topbar{background:radial-gradient(ellipse at 78% -80%,#684573 0,#49304f 34%,#322437 58%,#332637 100%);box-shadow:0 -2px 0 #b58a7180 inset,0 1px 0 #d7b4df14 inset}
+.ametista .brand-caption{color:#d5ae97}.ametista .rail{background:linear-gradient(125deg,#33253b,#251e2d 70%)}
+.ametista .work-space,.ametista .chat-space{background:radial-gradient(ellipse at 110% 10%,#3a294643,#251e2d 70%)}
+.ametista .rail-button,.ametista .module-item{border-radius:12px}
+.ametista .rail-button.active,.ametista .module-item.selected{background:linear-gradient(110deg,#64466b,#43314e);box-shadow:2px 0 0 #c6987b inset,0 1px 0 #d6b5df20 inset}
+.ametista .module-item .icon{stroke-linecap:round;stroke-linejoin:round;stroke:#bea2cf}.ametista .module-item.selected .icon{stroke:#edd5f4}
+.ametista .module-hero{border-radius:20px 11px 0 0;background:radial-gradient(ellipse at 112% 6%,#745282 0 17%,#533960 18% 30%,#483352 31% 46%,#3a2b43 47% 100%);box-shadow:0 -1px 0 #c4937980 inset}
+.ametista .module-hero:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 111% 0,transparent 44%,#ab7e681f 44.5%,transparent 45.5%)}
+.ametista .settings-body{border-radius:0 0 13px 20px;background:linear-gradient(125deg,#3c2d44,#312638);box-shadow:0 1px 0 #dcbadd0d inset}
+.ametista .segments,.ametista .keybind-button,.ametista input{border-radius:12px}
+.ametista .segments{background:linear-gradient(#2c2035,#302438);box-shadow:0 1px 0 #0003 inset}
+.ametista .segments button,.ametista .hud-selection-tabs button{border-radius:9px}
+.ametista .segments button.active,.ametista .hud-selection-tabs button.active{background:linear-gradient(#745882,#594466);box-shadow:0 1px 0 #d5b6e72c inset}
+.ametista .toggle{border-radius:12px}.ametista .toggle:before{border-radius:50%}
+.ametista .theme-stamp{border-radius:8px;background:linear-gradient(135deg,#705176,#3f304b);border-color:#c49883}
+.ametista .bottom-bar,.ametista .hud-bottom{background:linear-gradient(90deg,#35273b,#2b2132);box-shadow:0 1px 0 #bf93702e inset}
+.ametista .reply-box,.ametista .search-box,.ametista .primary-button,.ametista .secondary-button{border-radius:12px}
+.ametista .reply-box{background:linear-gradient(115deg,#45304e,#35263f);box-shadow:2px 0 0 #b88a73 inset,0 1px 0 #d5adcf1a inset}
+.ametista .chat-results{border-radius:12px;background:radial-gradient(ellipse at 105% 100%,#54356033,#322638 75%)}
+.ametista .chat-result{border-bottom-color:#765778}.ametista .filter-group h3{color:#e5c6ec}.ametista .filter-group{background:linear-gradient(130deg,#51385a12,#392b4312)}
+.ametista .hud-inspector{background:radial-gradient(ellipse at 130% 15%,#5b3e6660,#36293f 60%);box-shadow:1px 0 0 #b18a75 inset}
+.ametista .hud-inspector .page-heading{border-bottom-color:#ad8676}
+.ametista .primary-button{background:linear-gradient(#dfc2ed,#c19bd7);box-shadow:0 1px 0 #f5e2ff66 inset}
+.ametista .secondary-button{background:linear-gradient(#674b73,#4f3b5d)}
+
+/* Esmeralda: deepslate, madeira em faixas e acabamento de oficina moderna. */
+#app.esmeralda{--text:#edf1e6;--muted:#b0bca7;--line:#607257;--accent:#bfd5a0;--accent-dark:#293824;--ground:#242d26;--panel:#344332;--input:#263326;--raised:#526747;--inspector:#33412e}
+.esmeralda .app-window,.esmeralda .hud-window{border-color:#91a480;border-radius:6px;box-shadow:0 20px 45px #0005,0 1px 0 #c5d5ab22 inset}
+.esmeralda .topbar,.esmeralda .hud-topbar{background:linear-gradient(0deg,#756247 0 2px,#414f36 2px 8px,#323e2e 8px 100%);box-shadow:0 1px 0 #ccb28744 inset}
+.esmeralda .brand-caption{color:#d0b893}.esmeralda .rail{background:repeating-linear-gradient(0deg,#2c3729 0 28px,#303b2c 28px 29px)}
+.esmeralda .work-space,.esmeralda .chat-space{background:repeating-linear-gradient(90deg,#253025 0 63px,#283328 63px 64px)}
+.esmeralda .rail-button,.esmeralda .module-item,.esmeralda .segments,.esmeralda .keybind-button,.esmeralda input{border-radius:3px}
+.esmeralda .rail-button.active,.esmeralda .module-item.selected{background:linear-gradient(105deg,#526246,#3f5238);box-shadow:2px 0 0 #c1a574 inset,0 1px 0 #b3ca9b2a inset}
+.esmeralda .module-item .icon{stroke-linecap:square;stroke-linejoin:miter;stroke:#bacaaa}.esmeralda .module-item.selected .icon{stroke:#ddebc7}
+.esmeralda .module-hero{border-radius:3px 3px 0 0;background:linear-gradient(0deg,#655c4333 0 8px,transparent 8px),repeating-linear-gradient(0deg,#3b4f37 0 32px,#405439 32px 33px);box-shadow:0 3px 0 #b4976899 inset,0 1px 0 #d1c29933 inset}
+.esmeralda .module-hero:before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,#a9c69107,transparent 45%,#19261922);box-shadow:8px 0 0 #191f190d inset}
+.esmeralda .settings-body{border-radius:0 0 3px 3px;background:repeating-linear-gradient(0deg,#33422f 0 62px,#374632 62px 63px);box-shadow:0 1px 0 #c6d4b01c inset}
+.esmeralda .segments{box-shadow:0 1px 0 #0003 inset}.esmeralda .segments button,.esmeralda .hud-selection-tabs button{border-radius:2px}
+.esmeralda .segments button.active,.esmeralda .hud-selection-tabs button.active{background:linear-gradient(#61764e,#4d623f);box-shadow:0 1px 0 #c5d5a643 inset}
+.esmeralda .toggle{border-radius:3px}.esmeralda .toggle:before{border-radius:1px}
+.esmeralda .theme-stamp{border-radius:3px;background:linear-gradient(135deg,#6c7750,#40553a);border-color:#b2976d}
+.esmeralda .bottom-bar,.esmeralda .hud-bottom{background:linear-gradient(0deg,#2e392b,#374330);box-shadow:0 1px 0 #ab916746 inset}
+.esmeralda .reply-box,.esmeralda .search-box,.esmeralda .primary-button,.esmeralda .secondary-button{border-radius:3px}
+.esmeralda .reply-box{background:repeating-linear-gradient(0deg,#394932 0 28px,#3e4e35 28px 29px);box-shadow:0 2px 0 #b0936599 inset}
+.esmeralda .chat-results{background:repeating-linear-gradient(0deg,#23302322 0 41px,#61734814 41px 42px)}
+.esmeralda .chat-result{border-bottom-color:#6d805b}.esmeralda .filter-group h3{color:#d7e2bb}
+.esmeralda .hud-inspector{background:repeating-linear-gradient(0deg,#33412e 0 62px,#394832 62px 63px);box-shadow:1px 0 0 #af98713d inset}
+.esmeralda .hud-inspector .page-heading{border-bottom-color:#bba076}
+.esmeralda .primary-button{background:linear-gradient(#ccddb1,#abc489);box-shadow:0 1px 0 #ebf3cb66 inset}
+.esmeralda .secondary-button{background:linear-gradient(#65754c,#4a603f)}
+
+/* Decorative layers are optional. Base material colors and identical geometry remain. */
+.no-decorations .module-hero:before{display:none}
+.no-decorations .topbar,.no-decorations .hud-topbar,.no-decorations .rail,.no-decorations .work-space,.no-decorations .chat-space,.no-decorations .module-hero,.no-decorations .settings-body,.no-decorations .reply-box,.no-decorations .chat-results,.no-decorations .hud-inspector{background-image:none}
+.no-decorations .topbar,.no-decorations .hud-topbar,.no-decorations .rail,.no-decorations .work-space,.no-decorations .chat-space{background-color:var(--ground)}
+.no-decorations .module-hero,.no-decorations .settings-body,.no-decorations .reply-box{background-color:var(--panel)}
+.no-decorations .chat-results{background-color:var(--input)}.no-decorations .hud-inspector{background-color:var(--inspector)}
