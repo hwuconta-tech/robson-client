@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+  <!-- Stem -->
+  <rect x="7" y="1" width="2" height="3" fill="#78350f"/>
+  <rect x="9" y="0" width="2" height="2" fill="#15803d"/>
+  <!-- Apple body -->
+  <rect x="4" y="3" width="8" height="2" fill="#eab308"/>
+  <rect x="2" y="5" width="12" height="6" fill="#facc15"/>
+  <rect x="3" y="11" width="10" height="2" fill="#ca8a04"/>
+  <rect x="5" y="13" width="6" height="1" fill="#a16207"/>
+  <!-- Shiny highlight -->
+  <rect x="4" y="5" width="2" height="3" fill="#fef08a"/>
+  <rect x="6" y="5" width="2" height="1" fill="#fef08a"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+  <!-- Bow curved wood -->
+  <rect x="2" y="2" width="2" height="4" fill="#78350f"/>
+  <rect x="4" y="1" width="3" height="2" fill="#92400e"/>
+  <rect x="7" y="0" width="3" height="2" fill="#78350f"/>
+  <rect x="1" y="6" width="2" height="4" fill="#451a03"/>
+  <rect x="2" y="10" width="2" height="4" fill="#78350f"/>
+  <rect x="4" y="13" width="3" height="2" fill="#92400e"/>
+  <rect x="7" y="14" width="3" height="2" fill="#78350f"/>
+  <!-- Bowstring -->
+  <rect x="9" y="1" width="1" height="14" fill="#f8fafc"/>
+</svg>

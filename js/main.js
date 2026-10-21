@@ -1,5 +1,6 @@
 /**
  * Robson Client Showcase - Main Interactive Engine
+ * 100% Minecraft 1.21.1 HUD & Chat Fidelity + Clean Theme Decorations
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAudioFeedback();
   initThemeSystem();
   initMinecraftScreen3D();
+  initHeroHotbar();
   initClientFrameSync();
   initHudStudioLab();
   initChatTranslatorLab();
@@ -63,7 +65,6 @@ function initScrollReveal() {
 
     revealElements.forEach(el => observer.observe(el));
   } else {
-    // Fallback if no observer
     revealElements.forEach(el => el.classList.add('revealed'));
   }
 }
@@ -110,8 +111,8 @@ function playUiSound(type = 'click') {
       osc.stop(now + 0.12);
     } else if (type === 'message') {
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(587.33, now); // D5
-      osc.frequency.setValueAtTime(880, now + 0.06); // A5
+      osc.frequency.setValueAtTime(587.33, now);
+      osc.frequency.setValueAtTime(880, now + 0.06);
       gain.gain.setValueAtTime(0.07, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
       osc.connect(gain);
@@ -126,7 +127,7 @@ function playUiSound(type = 'click') {
 
 function initAudioFeedback() {
   document.addEventListener('click', (e) => {
-    const interactiveTarget = e.target.closest('button, .nav-links a, .mc-chatbar-btn, .theme-btn, .gallery-item, .mc-slot');
+    const interactiveTarget = e.target.closest('button, .nav-links a, .mc-chatbar-btn, .theme-btn, .gallery-item, .mc-hotbar-slot, .mc-pill-action');
     if (interactiveTarget) {
       if (interactiveTarget.classList.contains('theme-btn')) {
         playUiSound('theme');
@@ -141,6 +142,11 @@ function initAudioFeedback() {
    4. THEME SYSTEM (TRANSFORMA A IDENTIDADE INTEIRA DO SITE)
    ========================================================== */
 const THEMES = ['diamante', 'ametista', 'esmeralda'];
+const THEME_NAMES = {
+  diamante: 'CORTE DIAMANTE',
+  ametista: 'GEODO AMETISTA',
+  esmeralda: 'MINA ESMERALDA'
+};
 let currentTheme = 'diamante';
 
 function initThemeSystem() {
@@ -162,6 +168,12 @@ function setSiteTheme(theme, syncWithIframe = true) {
   document.querySelectorAll('[data-set-theme]').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.setTheme === theme);
   });
+
+  // Atualiza subtítulo do tema na navbar
+  const navThemeLabel = document.getElementById('nav-active-theme');
+  if (navThemeLabel && THEME_NAMES[theme]) {
+    navThemeLabel.textContent = THEME_NAMES[theme];
+  }
 
   // Atualiza telemetria no jogo
   const telemetryTheme = document.getElementById('telemetry-theme');
@@ -195,8 +207,8 @@ function initMinecraftScreen3D() {
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-    const rotY = x * 18;
-    const rotX = -y * 18;
+    const rotY = x * 14;
+    const rotX = -y * 14;
 
     screen.style.transform = `rotateY(${rotY.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
   });
@@ -207,7 +219,47 @@ function initMinecraftScreen3D() {
 }
 
 /* ==========================================================
-   6. CLIENT FRAME CONTROLS & IFRAME SYNC
+   6. HERO HOTBAR INTERATIVA (CLIQUE & TECLAS 1-9)
+   ========================================================== */
+function initHeroHotbar() {
+  const slots = document.querySelectorAll('.mc-hotbar-slot');
+  const tooltipName = document.getElementById('hero-tooltip-name');
+  const tooltipStats = document.getElementById('hero-tooltip-stats');
+
+  function selectSlot(index) {
+    if (!slots[index]) return;
+    slots.forEach(s => s.classList.remove('active'));
+    slots[index].classList.add('active');
+
+    const name = slots[index].dataset.name || 'Item';
+    const stats = slots[index].dataset.stats || '';
+
+    if (tooltipName) tooltipName.textContent = name;
+    if (tooltipStats) tooltipStats.textContent = stats;
+  }
+
+  slots.forEach((slot, idx) => {
+    slot.addEventListener('click', () => {
+      selectSlot(idx);
+      playUiSound('click');
+    });
+  });
+
+  // Suporte a teclas 1 a 9 no teclado
+  window.addEventListener('keydown', (e) => {
+    // Ignora se estiver digitando em um campo de texto
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    const num = parseInt(e.key, 10);
+    if (num >= 1 && num <= 9) {
+      selectSlot(num - 1);
+      playUiSound('click');
+    }
+  });
+}
+
+/* ==========================================================
+   7. CLIENT FRAME CONTROLS & IFRAME SYNC
    ========================================================== */
 function initClientFrameSync() {
   const iframe = document.getElementById('client-iframe');
@@ -246,7 +298,7 @@ function initClientFrameSync() {
 }
 
 /* ==========================================================
-   7. INTERACTIVE HUD STUDIO LAB
+   8. INTERACTIVE HUD STUDIO LAB
    ========================================================== */
 function initHudStudioLab() {
   const canvas = document.getElementById('hud-interactive-canvas');
@@ -355,19 +407,25 @@ function initHudStudioLab() {
 }
 
 /* ==========================================================
-   8. CHAT 100% MINECRAFT COM GOOGLE TRANSLATE REAL
+   9. CHAT 100% MINECRAFT COM GOOGLE TRANSLATE REAL & COPIAR
    ========================================================== */
 function initChatTranslatorLab() {
   const input = document.getElementById('chat-sim-input');
   const sendBtn = document.getElementById('chat-sim-send');
   const messagesBox = document.getElementById('chat-sim-messages');
   const transIndicator = document.getElementById('chat-sim-trans-preview');
+  const btnTr = document.getElementById('chat-btn-tr');
+  const btnAt = document.getElementById('chat-btn-autotext');
+  const btnSym = document.getElementById('chat-btn-symbols');
+  const popoverAt = document.getElementById('chat-popover-autotext');
+  const popoverSym = document.getElementById('chat-popover-symbols');
+
   if (!input || !messagesBox) return;
 
   let debounceTimer = null;
 
   async function fetchRealGoogleTranslation(text) {
-    if (!text.trim()) return '';
+    if (!text.trim()) return null;
     try {
       const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=pt&dt=t&q=${encodeURIComponent(text)}`;
       const res = await fetch(url);
@@ -378,9 +436,9 @@ function initChatTranslatorLab() {
           const enUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=en&dt=t&q=${encodeURIComponent(text)}`;
           const enRes = await fetch(enUrl);
           const enData = await enRes.json();
-          return { text: enData[0][0][0], lang: 'EN' };
+          return { text: enData[0][0][0], lang: 'PT→EN' };
         }
-        return { text: data[0][0][0], lang: 'PT' };
+        return { text: data[0][0][0], lang: 'EN→PT' };
       }
     } catch (err) {
       console.warn('Google Translate API fallback:', err);
@@ -388,22 +446,102 @@ function initChatTranslatorLab() {
     return { text: text, lang: 'Auto' };
   }
 
+  // Preview ao vivo enquanto digita
   input.addEventListener('input', () => {
     const text = input.value.trim();
     if (!text) {
-      transIndicator.textContent = 'Digite algo em português ou inglês para testar a tradução via Google...';
+      if (transIndicator) transIndicator.textContent = '🌐 Google Translate Pronto: digite uma mensagem para ver a tradução...';
       return;
     }
 
     clearTimeout(debounceTimer);
-    transIndicator.innerHTML = `Robson Translator 🌐: <em>Traduzindo ao vivo via Google...</em>`;
+    if (transIndicator) transIndicator.innerHTML = `Robson Translator 🌐: <em>Traduzindo ao vivo via Google...</em>`;
 
     debounceTimer = setTimeout(async () => {
       const res = await fetchRealGoogleTranslation(text);
-      if (res && res.text) {
+      if (res && res.text && transIndicator) {
         transIndicator.innerHTML = `Robson Translator 🌐 <strong>[${res.lang}]</strong>: "${escapeHtml(res.text)}"`;
       }
     }, 350);
+  });
+
+  // Botão [TR] Traduzir texto do input in-place
+  if (btnTr) {
+    btnTr.addEventListener('click', async () => {
+      const text = input.value.trim();
+      if (!text) return;
+      btnTr.textContent = '...';
+      const res = await fetchRealGoogleTranslation(text);
+      if (res && res.text) {
+        input.value = res.text;
+        if (transIndicator) transIndicator.innerHTML = `Robson Translator 🌐 <strong>[Traduzido]</strong>: "${escapeHtml(res.text)}"`;
+      }
+      btnTr.textContent = '[TR] Traduzir';
+    });
+  }
+
+  // Popover AutoTexts
+  if (btnAt && popoverAt) {
+    btnAt.addEventListener('click', () => {
+      popoverAt.classList.toggle('open');
+      if (popoverSym) popoverSym.classList.remove('open');
+    });
+  }
+
+  // Popover Símbolos
+  if (btnSym && popoverSym) {
+    btnSym.addEventListener('click', () => {
+      popoverSym.classList.toggle('open');
+      if (popoverAt) popoverAt.classList.remove('open');
+    });
+  }
+
+  // Inserção a partir dos popovers
+  document.addEventListener('click', (e) => {
+    const atBtn = e.target.closest('[data-autotext]');
+    if (atBtn) {
+      input.value = atBtn.dataset.autotext;
+      if (popoverAt) popoverAt.classList.remove('open');
+      input.focus();
+      input.dispatchEvent(new Event('input'));
+      return;
+    }
+
+    const symBtn = e.target.closest('[data-symbol]');
+    if (symBtn) {
+      input.value += symBtn.dataset.symbol + ' ';
+      if (popoverSym) popoverSym.classList.remove('open');
+      input.focus();
+      input.dispatchEvent(new Event('input'));
+      return;
+    }
+
+    // Fechar popover ao clicar fora
+    if (!e.target.closest('#chat-btn-autotext') && !e.target.closest('#chat-popover-autotext') && popoverAt) {
+      popoverAt.classList.remove('open');
+    }
+    if (!e.target.closest('#chat-btn-symbols') && !e.target.closest('#chat-popover-symbols') && popoverSym) {
+      popoverSym.classList.remove('open');
+    }
+  });
+
+  // Delegação do botão Copiar em cada linha de mensagem
+  messagesBox.addEventListener('click', (e) => {
+    const copyBtn = e.target.closest('.mc-chat-copy-btn');
+    if (!copyBtn) return;
+
+    const textToCopy = copyBtn.dataset.copy || '';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = '✓ Copiado';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.textContent = originalText;
+          copyBtn.classList.remove('copied');
+        }, 1500);
+      });
+    }
   });
 
   async function sendMessage() {
@@ -414,24 +552,28 @@ function initChatTranslatorLab() {
 
     const translationResult = await fetchRealGoogleTranslation(text);
     const translatedText = translationResult ? translationResult.text : text;
+    const langTag = translationResult ? translationResult.lang : 'PT';
 
-    // Linha Minecraft autêntica
+    // Linha Minecraft autêntica com botão copiar
     const msgEl = document.createElement('div');
-    msgEl.className = 'mc-chat-line';
+    msgEl.className = 'mc-chat-row';
     msgEl.innerHTML = `
-      <span class="mc-c-rank">&lt;Você&gt;</span>
-      <span class="mc-c-white">${escapeHtml(text)}</span>
-      <span class="mc-c-trans">🌐 Traduzido: "${escapeHtml(translatedText)}"</span>
+      <span class="mc-chat-msg">
+        <span class="mc-c-yellow">&lt;Kayoba15_&gt;</span>
+        <span class="mc-c-white">${escapeHtml(text)}</span>
+        <span class="mc-trans-tag">🌐 ${escapeHtml(langTag)}: "${escapeHtml(translatedText)}"</span>
+      </span>
+      <button class="mc-chat-copy-btn" data-copy="<Kayoba15_> ${escapeHtml(text)}">Copiar</button>
     `;
     messagesBox.appendChild(msgEl);
     messagesBox.scrollTop = messagesBox.scrollHeight;
     input.value = '';
-    transIndicator.textContent = 'Digite algo em português ou inglês para testar a tradução via Google...';
+    if (transIndicator) transIndicator.textContent = '🌐 Google Translate Pronto: digite uma mensagem para ver a tradução...';
 
     // Resposta de jogador simulada
     setTimeout(async () => {
       const replies = [
-        'Hey Caio, thanks for the trade!',
+        'Hey Kayoba, thanks for the trade!',
         'Can anyone help me build a mob trap?',
         'Mining diamonds at Y: -58 right now!',
         'GG everyone, see you in the nether!'
@@ -440,136 +582,93 @@ function initChatTranslatorLab() {
       const botTrans = await fetchRealGoogleTranslation(randomEng);
 
       const botMsg = document.createElement('div');
-      botMsg.className = 'mc-chat-line';
+      botMsg.className = 'mc-chat-row';
       botMsg.innerHTML = `
-        <span class="mc-c-player">&lt;Steve_US&gt;</span>
-        <span class="mc-c-white">${escapeHtml(randomEng)}</span>
-        <span class="mc-c-trans">🌐 Traduzido: "${escapeHtml(botTrans.text)}"</span>
+        <span class="mc-chat-msg">
+          <span class="mc-c-player">&lt;Steve_US&gt;</span>
+          <span class="mc-c-white">${escapeHtml(randomEng)}</span>
+          <span class="mc-trans-tag">🌐 EN→PT: "${escapeHtml(botTrans ? botTrans.text : randomEng)}"</span>
+        </span>
+        <button class="mc-chat-copy-btn" data-copy="<Steve_US> ${escapeHtml(randomEng)}">Copiar</button>
       `;
       messagesBox.appendChild(botMsg);
       messagesBox.scrollTop = messagesBox.scrollHeight;
-      playUiSound('message');
     }, 1200);
   }
 
-  sendBtn?.addEventListener('click', sendMessage);
+  if (sendBtn) sendBtn.addEventListener('click', sendMessage);
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') sendMessage();
   });
-
-  // AutoTexts Popover
-  const btnAutoText = document.getElementById('chat-btn-autotext');
-  const popAutoText = document.getElementById('chat-popover-autotext');
-  if (btnAutoText && popAutoText) {
-    btnAutoText.addEventListener('click', (e) => {
-      e.stopPropagation();
-      popSymbols?.classList.remove('open');
-      popAutoText.classList.toggle('open');
-    });
-
-    popAutoText.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        input.value = btn.dataset.autotext;
-        popAutoText.classList.remove('open');
-        input.dispatchEvent(new Event('input'));
-        input.focus();
-      });
-    });
-  }
-
-  // Symbols Popover
-  const btnSymbols = document.getElementById('chat-btn-symbols');
-  const popSymbols = document.getElementById('chat-popover-symbols');
-  if (btnSymbols && popSymbols) {
-    btnSymbols.addEventListener('click', (e) => {
-      e.stopPropagation();
-      popAutoText?.classList.remove('open');
-      popSymbols.classList.toggle('open');
-    });
-
-    popSymbols.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        input.value += btn.textContent;
-        popSymbols.classList.remove('open');
-        input.dispatchEvent(new Event('input'));
-        input.focus();
-      });
-    });
-  }
-
-  document.addEventListener('click', () => {
-    popAutoText?.classList.remove('open');
-    popSymbols?.classList.remove('open');
-  });
-}
-
-function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, m => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
-  })[m]);
 }
 
 /* ==========================================================
-   9. GALLERY LIGHTBOX
+   10. GALLERY LIGHTBOX
    ========================================================== */
 function initGalleryLightbox() {
-  const modal = document.getElementById('lightbox-modal');
-  const modalImg = document.getElementById('lightbox-img');
+  const lightbox = document.getElementById('lightbox-modal');
+  const lightboxImg = document.getElementById('lightbox-img');
   const closeBtn = document.getElementById('lightbox-close');
-  if (!modal || !modalImg) return;
+  if (!lightbox || !lightboxImg) return;
 
   document.querySelectorAll('[data-gallery-src]').forEach(item => {
     item.addEventListener('click', () => {
-      modalImg.src = item.dataset.gallerySrc;
-      modal.classList.add('open');
+      const src = item.dataset.gallerySrc;
+      lightboxImg.src = src;
+      lightbox.classList.add('open');
     });
   });
 
-  closeBtn?.addEventListener('click', () => modal.classList.remove('open'));
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.remove('open');
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 }
 
 /* ==========================================================
-   10. DISCORD CLIPBOARD & TOAST
+   11. DISCORD COPY & TOAST NOTIFICATION
    ========================================================== */
 function initDiscordCopy() {
-  const discordBtns = document.querySelectorAll('[data-discord-copy]');
-  discordBtns.forEach(btn => {
+  document.querySelectorAll('[data-discord-copy]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const discordTag = btn.dataset.discordCopy || 'caio';
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(discordTag).then(() => {
-          showToast(`Discord tag "${discordTag}" copiada para a área de transferência!`);
-        }).catch(() => {
-          showToast(`Discord: ${discordTag}`);
-        });
-      } else {
-        showToast(`Discord: ${discordTag}`);
+      const discordHandle = btn.dataset.discordCopy || 'caio';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(discordHandle).catch(() => {});
       }
+      showToast(`Discord copiado: "${discordHandle}"! Adicione no Discord.`);
     });
   });
 }
 
+let toastTimeout = null;
 function showToast(message) {
-  let toast = document.getElementById('site-toast');
+  let toast = document.getElementById('robson-toast');
   if (!toast) {
     toast = document.createElement('div');
-    toast.id = 'site-toast';
-    toast.className = 'site-toast';
+    toast.id = 'robson-toast';
+    toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background:#1e293b; color:#fff; padding:10px 18px; border-radius:8px; border:1px solid #38bdf8; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:9999; font-size:13px; font-weight:600; opacity:0; transition:opacity 0.3s ease; pointer-events:none;';
     document.body.appendChild(toast);
   }
-  toast.innerHTML = `<span style="color:var(--primary)">✦</span> ${message}`;
-  toast.classList.add('show');
-  clearTimeout(window._toastTimeout);
-  window._toastTimeout = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 3200);
+
+  toast.textContent = message;
+  toast.style.opacity = '1';
+
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.style.opacity = '0';
+  }, 2800);
 }
 
 /* ==========================================================
-   11. SCROLL NAV ACTIVE OBSERVER
+   12. SCROLL SPY FOR NAVBAR
    ========================================================== */
 function initScrollNav() {
   const sections = document.querySelectorAll('section[id]');
@@ -577,15 +676,29 @@ function initScrollNav() {
 
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 160;
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute('id');
+    const scrollY = window.scrollY;
+
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 160;
+      const height = sec.offsetHeight;
+      if (scrollY >= top && scrollY < top + height) {
+        current = sec.getAttribute('id');
       }
     });
 
-    navLinks.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-    });
+    if (current) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    }
   }, { passive: true });
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }

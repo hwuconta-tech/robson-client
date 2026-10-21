@@ -12,6 +12,9 @@
 </head>
 <body data-site-theme="diamante">
 
+  <!-- LINHA DECORATIVA DO TEMA NO TOPO DO NAVEGADOR -->
+  <div class="browser-theme-accent-stripe" aria-hidden="true"></div>
+
   <!-- NAVBAR FLUTUANTE EM VIDRO ESTILIZADO -->
   <div class="navbar-wrap">
     <nav class="navbar">
@@ -19,7 +22,7 @@
         <img src="assets/robson-logo.png" alt="Robson Client Logo">
         <div class="nav-brand-text">
           <span class="nav-brand-title">Robson Client</span>
-          <span class="nav-brand-version">Fabric 1.21.1</span>
+          <span class="nav-brand-version" id="nav-active-theme">CORTE DIAMANTE</span>
         </div>
       </a>
 
@@ -95,6 +98,12 @@
         <div class="mc-game-screen" id="hero-game-screen">
           <div class="mc-game-backdrop"></div>
 
+          <!-- HUD In-Game: Armadura no Canto Superior Esquerdo -->
+          <div class="mc-hud-armor-stack mc-font">
+            <div class="mc-armor-line"><img src="assets/mc/armor.svg" alt=""><span>100%</span></div>
+            <div class="mc-armor-line"><span style="color:#38bdf8;">Elmo · Peitoral · Calça · Botas</span></div>
+          </div>
+
           <!-- HUD In-game: FPS, Ping e Status -->
           <div class="mc-hud-fps-top mc-font">
             <span class="mc-hud-badge-tag" style="color:#6ee7b7;">144 FPS · 18ms</span>
@@ -109,27 +118,97 @@
           <div class="mc-scoreboard-demo mc-font">
             <div class="mc-scoreboard-title">ROBSON RANKUP</div>
             <div style="display:flex; justify-content:space-between;"><span>Rank:</span><span style="color:#38bdf8;">Diamante</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>Mina:</span><span style="color:#a78bfa;">Nível 8</span></div>
             <div style="display:flex; justify-content:space-between;"><span>Saldo:</span><span>125.000</span></div>
             <div style="display:flex; justify-content:space-between;"><span>Jogadores:</span><span>42/100</span></div>
           </div>
 
-          <!-- Hotbar Autêntica com Vidas e Fome -->
-          <div class="mc-hotbar-container mc-font">
-            <div class="mc-status-bars">
-              <span class="mc-hearts">❤❤❤❤❤❤❤❤❤❤</span>
-              <span class="mc-level">30</span>
-              <span class="mc-hunger">🍗🍗🍗🍗🍗🍗🍗🍗🍗🍗</span>
+          <!-- BARRAS DE STATUS E HOTBAR AUTÊNTICA (10 CORAÇÕES EM 1 LINHA SÓ) -->
+          <div class="mc-hud-bottom">
+            <!-- Tooltip flutuante do item selecionado -->
+            <div class="mc-item-tooltip mc-font" id="hero-item-tooltip">
+              <span class="mc-tooltip-title" id="hero-tooltip-name">Espada de Diamante</span>
+              <span class="mc-tooltip-stats" id="hero-tooltip-stats">+7 Dano de Ataque · Afiação V</span>
             </div>
-            <div class="mc-hotbar-slots">
-              <div class="mc-slot active" title="Espada de Diamante">⚔️</div>
-              <div class="mc-slot" title="Picareta">⚒️</div>
-              <div class="mc-slot" title="Maçã Dourada">🍏</div>
-              <div class="mc-slot" title="Balde d'Água">🪣</div>
-              <div class="mc-slot" title="Arco">🏹</div>
-              <div class="mc-slot" title="Pérola do End">🔮</div>
-              <div class="mc-slot" title="Pão">🍞</div>
-              <div class="mc-slot" title="Foguetes">🚀</div>
-              <div class="mc-slot" title="Totem da Imortalidade">🗿</div>
+
+            <!-- Linha de Status: 10 Corações | Nível 30 | 10 Fomes (Strictly 1 row) -->
+            <div class="mc-status-row">
+              <div class="mc-hearts-row" id="hero-hearts-bar">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+                <img src="assets/mc/heart.svg" class="mc-pixel-icon" alt="❤">
+              </div>
+
+              <div class="mc-xp-level-num mc-font">30</div>
+
+              <div class="mc-hunger-row" id="hero-hunger-bar">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+                <img src="assets/mc/hunger.svg" class="mc-pixel-icon" alt="🍗">
+              </div>
+            </div>
+
+            <!-- Barra de Experiência Verde Segmentada -->
+            <div class="mc-xp-bar-wrap">
+              <div class="mc-xp-bar-fill" style="width: 78%;"></div>
+            </div>
+
+            <!-- Hotbar Oficial de 9 Slots com Itens Reais e Teclas 1-9 -->
+            <div class="mc-hotbar-frame" id="hero-hotbar">
+              <div class="mc-hotbar-slot active" data-slot="0" data-name="Espada de Diamante" data-stats="+7 Dano de Ataque · Afiação V">
+                <img src="assets/mc/item-sword.svg" alt="Espada">
+                <span class="mc-slot-num">1</span>
+              </div>
+              <div class="mc-hotbar-slot" data-slot="1" data-name="Picareta de Diamante" data-stats="Eficiência V · Fortuna III">
+                <img src="assets/mc/item-pickaxe.svg" alt="Picareta">
+                <span class="mc-slot-num">2</span>
+              </div>
+              <div class="mc-hotbar-slot" data-slot="2" data-name="Maçã Dourada" data-stats="Regeneração II · Absorção I">
+                <img src="assets/mc/item-gapple.svg" alt="Maçã">
+                <span class="mc-slot-count mc-font">16</span>
+                <span class="mc-slot-num">3</span>
+              </div>
+              <div class="mc-hotbar-slot" data-slot="3" data-name="Balde d'Água" data-stats="MLG pronto · Sem dano de queda">
+                <img src="assets/mc/item-bucket.svg" alt="Balde">
+                <span class="mc-slot-num">4</span>
+              </div>
+              <div class="mc-hotbar-slot" data-slot="4" data-name="Pérola do End" data-stats="Teleporte instantâneo">
+                <img src="assets/mc/item-pearl.svg" alt="Pérola">
+                <span class="mc-slot-count mc-font">16</span>
+                <span class="mc-slot-num">5</span>
+              </div>
+              <div class="mc-hotbar-slot" data-slot="5" data-name="Bife Cozido" data-stats="+8 Fome · +12.8 Saturação">
+                <img src="assets/mc/item-steak.svg" alt="Bife">
+                <span class="mc-slot-count mc-font">64</span>
+                <span class="mc-slot-num">6</span>
+              </div>
+              <div class="mc-hotbar-slot" data-slot="6" data-name="Arco Encantado" data-stats="Força V · Infinidade I">
+                <img src="assets/mc/item-bow.svg" alt="Arco">
+                <span class="mc-slot-num">7</span>
+              </div>
+              <div class="mc-hotbar-slot" data-slot="7" data-name="Totem da Imortalidade" data-stats="Evita a morte ao receber dano fatal">
+                <img src="assets/mc/item-totem.svg" alt="Totem">
+                <span class="mc-slot-num">8</span>
+              </div>
+              <div class="mc-hotbar-slot" data-slot="8" data-name="Foguetes de Artifício" data-stats="Duração de Voo: 3">
+                <img src="assets/mc/item-rocket.svg" alt="Foguete">
+                <span class="mc-slot-count mc-font">64</span>
+                <span class="mc-slot-num">9</span>
+              </div>
             </div>
           </div>
         </div>
@@ -261,6 +340,99 @@
             <button class="mc-chatbar-btn" id="hud-reset-positions" style="margin-left:auto;">
               <span>Restaurar Padrão</span>
             </button>
+          </div>
+        </div>
+
+        <!-- Vídeo Real In-Game (Crop de CSS) -->
+        <div class="video-showcase-box" data-reveal data-reveal-delay="1">
+          <div class="video-showcase-header">
+            <span>● Gravação In-Game (Minecraft 1.21.1)</span>
+            <span class="badge">HUD Studio</span>
+          </div>
+          <div class="video-crop-viewport">
+            <video src="media/hud-studio.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="video-caption">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
+            <span>Edição suave de scoreboard, chat e elementos com grade de precisão e persistência.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3: CHAT 100% ESTILO MINECRAFT & TRADUTOR GOOGLE REAL -->
+  <section id="chat-tradutor" class="section">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="badge">100% Estilo Minecraft</span>
+        <h2 class="section-title">Chat Inteligente & Tradutor Nativo</h2>
+        <p class="section-desc">
+          Converse em qualquer servidor gringo sem barreiras. Digite qualquer frase abaixo em português ou inglês para ver o tradutor nativo via Google Translate responder ao vivo!
+        </p>
+      </div>
+
+      <div class="lab-grid">
+        <!-- Chat Minecraft Autêntico (Com Copiar, Robson Chat Bar e Tradutor Nativo) -->
+        <div class="mc-chat-screen-window mc-font" data-reveal>
+          <!-- Mensagens com fundo translúcido clássico do Minecraft -->
+          <div class="mc-vanilla-chat-hud" id="chat-sim-messages">
+            <div class="mc-chat-row">
+              <span class="mc-chat-msg"><span class="mc-c-server">[EnchantedMC]</span> <span class="mc-c-white">Bem-vindo ao servidor! Mina Diamante reinicia em 10m.</span></span>
+              <button class="mc-chat-copy-btn" data-copy="[EnchantedMC] Bem-vindo ao servidor! Mina Diamante reinicia em 10m.">Copiar</button>
+            </div>
+            <div class="mc-chat-row">
+              <span class="mc-chat-msg"><span class="mc-c-player">&lt;Steve_US&gt;</span> <span class="mc-c-white">Does anyone want to trade 32 diamonds for netherite?</span> <span class="mc-trans-tag">🌐 EN→PT: "Alguém quer trocar 32 diamantes por netherite?"</span></span>
+              <button class="mc-chat-copy-btn" data-copy="Does anyone want to trade 32 diamonds for netherite?">Copiar</button>
+            </div>
+            <div class="mc-chat-row">
+              <span class="mc-chat-msg"><span class="mc-c-rank">&lt;[VIP] Caio&gt;</span> <span class="mc-c-white">I have the diamonds ready at spawn!</span> <span class="mc-trans-tag">🌐 PT→EN</span></span>
+              <button class="mc-chat-copy-btn" data-copy="I have the diamonds ready at spawn!">Copiar</button>
+            </div>
+          </div>
+
+          <!-- Robson Chat Bar (Pílula Oficial In-Game) -->
+          <div class="mc-robson-chatbar-pill">
+            <span class="mc-pill-brand">R</span>
+            <button class="mc-pill-action" id="chat-btn-autotext" title="Atalhos rápidos">[AT] AutoTexts</button>
+            <button class="mc-pill-action" id="chat-btn-symbols" title="Símbolos e emojis">[+] Símbolos</button>
+            <button class="mc-pill-action" id="chat-btn-tr" title="Traduzir o que está digitado no campo">[TR] Traduzir</button>
+          </div>
+
+          <!-- Popover AutoTexts -->
+          <div class="sim-popover" id="chat-popover-autotext">
+            <div style="font-size:12px; color:#aaa; margin-bottom:6px;">6 ATALHOS RÁPIDOS</div>
+            <div class="popover-grid-buttons">
+              <button data-autotext="/home">/home</button>
+              <button data-autotext="/mina">/mina</button>
+              <button data-autotext="/spawn">/spawn</button>
+              <button data-autotext="/pvp">/pvp</button>
+              <button data-autotext="/g Olá a todos!">/g Olá!</button>
+              <button data-autotext="/r Picareta pronta.">/r Resposta</button>
+            </div>
+          </div>
+
+          <!-- Popover Símbolos -->
+          <div class="sim-popover" id="chat-popover-symbols">
+            <div style="font-size:12px; color:#aaa; margin-bottom:6px;">CARACTERES MINECRAFT</div>
+            <div class="popover-grid-buttons">
+              <button data-symbol="→">→</button>
+              <button data-symbol="←">←</button>
+              <button data-symbol="★">★</button>
+              <button data-symbol="❤">❤</button>
+              <button data-symbol="⚔">⚔</button>
+              <button data-symbol="✧">✧</button>
+            </div>
+          </div>
+
+          <!-- Barra de Entrada Vanilla -->
+          <div class="mc-vanilla-input-row">
+            <span class="mc-prompt-arrow">&gt;</span>
+            <input type="text" class="mc-vanilla-input mc-font" id="chat-sim-input" placeholder="Digite em português ou inglês e pressione Enter (ou use [TR])...">
+            <button class="mc-send-button mc-font" id="chat-sim-send">Enviar</button>
+          </div>
+          <div class="mc-live-translator-hint" id="chat-sim-trans-preview">
+            🌐 Google Translate Pronto: digite uma mensagem para ver a tradução...
           </div>
         </div>
 
