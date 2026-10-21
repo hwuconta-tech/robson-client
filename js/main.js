@@ -109,6 +109,16 @@ function playUiSound(type = 'click') {
       gain.connect(audioCtx.destination);
       osc.start(now);
       osc.stop(now + 0.12);
+    } else if (type === 'hit') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.exponentialRampToValueAtTime(70, now + 0.12);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.12);
     } else if (type === 'message') {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(587.33, now);
@@ -225,6 +235,9 @@ function initHeroHotbar() {
   const slots = document.querySelectorAll('.mc-hotbar-slot');
   const tooltipName = document.getElementById('hero-tooltip-name');
   const tooltipStats = document.getElementById('hero-tooltip-stats');
+  const screen = document.getElementById('hero-game-screen');
+  const arm = document.getElementById('hero-player-arm');
+  const heldItem = document.getElementById('hero-held-item');
 
   function selectSlot(index) {
     if (!slots[index]) return;
@@ -236,10 +249,16 @@ function initHeroHotbar() {
 
     if (tooltipName) tooltipName.textContent = name;
     if (tooltipStats) tooltipStats.textContent = stats;
+
+    const slotImg = slots[index].querySelector('img');
+    if (heldItem && slotImg) {
+      heldItem.src = slotImg.src;
+    }
   }
 
   slots.forEach((slot, idx) => {
-    slot.addEventListener('click', () => {
+    slot.addEventListener('click', (e) => {
+      e.stopPropagation();
       selectSlot(idx);
       playUiSound('click');
     });
@@ -247,15 +266,24 @@ function initHeroHotbar() {
 
   // Suporte a teclas 1 a 9 no teclado
   window.addEventListener('keydown', (e) => {
-    // Ignora se estiver digitando em um campo de texto
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
     const num = parseInt(e.key, 10);
     if (num >= 1 && num <= 9) {
       selectSlot(num - 1);
       playUiSound('click');
     }
   });
+
+  // Ataque com a mão / espada ao clicar na tela do jogo
+  if (screen && arm) {
+    screen.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.mc-hotbar-slot, .mc-hud-armor-stack, .mc-scoreboard-demo, .mc-hud-fps-top')) return;
+      arm.classList.remove('swinging');
+      void arm.offsetWidth; // reflow
+      arm.classList.add('swinging');
+      playUiSound('hit');
+    });
+  }
 }
 
 /* ==========================================================

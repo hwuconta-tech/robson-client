@@ -14,6 +14,8 @@
 
   <!-- LINHA DECORATIVA DO TEMA NO TOPO DO NAVEGADOR -->
   <div class="browser-theme-accent-stripe" aria-hidden="true"></div>
+  <div class="browser-theme-side-left" aria-hidden="true"></div>
+  <div class="browser-theme-side-right" aria-hidden="true"></div>
 
   <!-- NAVBAR FLUTUANTE EM VIDRO ESTILIZADO -->
   <div class="navbar-wrap">
@@ -113,6 +115,11 @@
 
           <!-- Mira Vanilla (Crosshair) -->
           <div class="mc-crosshair"></div>
+
+          <!-- Braço do Jogador em Primeira Pessoa com Item (Balança e bate ao clicar!) -->
+          <div class="mc-player-arm" id="hero-player-arm" title="Clique na tela para atacar!">
+            <img src="assets/mc/item-sword.svg" id="hero-held-item" class="mc-arm-item" alt="Item na mão">
+          </div>
 
           <!-- Scoreboard Minecraft -->
           <div class="mc-scoreboard-demo mc-font">
@@ -346,11 +353,11 @@
         <!-- Vídeo Real In-Game (Crop de CSS) -->
         <div class="video-showcase-box" data-reveal data-reveal-delay="1">
           <div class="video-showcase-header">
-            <span>● Gravação In-Game (Minecraft 1.21.1)</span>
-            <span class="badge">HUD Studio</span>
+            <span>● Demonstração In-Game (Minecraft 1.21.1)</span>
+            <span class="badge">Chat & Tradutor</span>
           </div>
           <div class="video-crop-viewport">
-            <video src="media/hud-studio.mp4" autoplay loop muted playsinline></video>
+            <video src="media/chat-translator.mp4" poster="media/v14-chat-bar.png" autoplay loop muted playsinline></video>
           </div>
           <div class="video-caption">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
@@ -439,11 +446,11 @@
         <!-- Vídeo Real In-Game (Crop de CSS) -->
         <div class="video-showcase-box" data-reveal data-reveal-delay="1">
           <div class="video-showcase-header">
-            <span>● Gravação In-Game (Minecraft 1.21.1)</span>
-            <span class="badge">HUD Studio</span>
+            <span>● Demonstração In-Game (Minecraft 1.21.1)</span>
+            <span class="badge">Chat & Tradutor</span>
           </div>
           <div class="video-crop-viewport">
-            <video src="media/hud-studio.mp4" autoplay loop muted playsinline></video>
+            <video src="media/chat-translator.mp4" poster="media/v14-chat-bar.png" autoplay loop muted playsinline></video>
           </div>
           <div class="video-caption">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
@@ -455,109 +462,7 @@
   </section>
 
   <!-- SEÇÃO 3: CHAT 100% ESTILO MINECRAFT & TRADUTOR GOOGLE REAL -->
-  <section id="chat-tradutor" class="section">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <span class="badge">100% Estilo Minecraft</span>
-        <h2 class="section-title">Chat Inteligente & Tradutor Nativo</h2>
-        <p class="section-desc">
-          Converse em qualquer servidor gringo sem barreiras. Digite qualquer frase abaixo em português ou inglês para ver o tradutor nativo via Google Translate responder ao vivo!
-        </p>
-      </div>
-
-      <div class="lab-grid">
-        <!-- Chat Minecraft Autêntico -->
-        <div class="mc-chat-container mc-font" data-reveal>
-          <!-- Mensagens do Chat -->
-          <div class="mc-chat-messages-box" id="chat-sim-messages">
-            <div class="mc-chat-line">
-              <span class="mc-c-server">[EnchantedMC]</span> <span class="mc-c-white">Welcome to the server! Use /help for commands.</span>
-            </div>
-            <div class="mc-chat-line">
-              <span class="mc-c-player">&lt;Steve_US&gt;</span> <span class="mc-c-white">Does anyone want to trade diamonds for netherite?</span>
-              <span class="mc-c-trans">🌐 Traduzido: "Alguém quer trocar diamantes por netherite?"</span>
-            </div>
-            <div class="mc-chat-line">
-              <span class="mc-c-rank">&lt;[VIP] Caio&gt;</span> <span class="mc-c-white">I have 32 diamonds ready to trade!</span>
-              <span class="mc-c-trans">🌐 Traduzido: "Eu tenho 32 diamantes prontos para trocar!"</span>
-            </div>
-          </div>
-
-          <!-- Indicador da Tradução Automática -->
-          <div class="mc-translator-status-bar" id="chat-sim-trans-preview">
-            Digite algo em português ou inglês para testar a tradução via Google...
-          </div>
-
-          <!-- Robson Chat Bar (Ações Rápidas Oficiais) -->
-          <div class="mc-chatbar-buttons">
-            <!-- Botão AT com Popover -->
-            <div style="position:relative;">
-              <button class="mc-chatbar-btn" id="chat-btn-autotext" title="Atalhos rápidos de texto">
-                <strong>[AT]</strong> AutoTexts
-              </button>
-              <div class="sim-popover" id="chat-popover-autotext">
-                <div style="font-size:12px; color:#aaa; margin-bottom:6px;">6 ATALHOS RÁPIDOS</div>
-                <div class="popover-grid-buttons">
-                  <button data-autotext="/home">/home</button>
-                  <button data-autotext="/mina">/mina</button>
-                  <button data-autotext="/spawn">/spawn</button>
-                  <button data-autotext="/pvp">/pvp</button>
-                  <button data-autotext="/g Olá a todos!">/g Olá!</button>
-                  <button data-autotext="/r Picareta pronta.">/r Resposta</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Botão Símbolos com Popover -->
-            <div style="position:relative;">
-              <button class="mc-chatbar-btn" id="chat-btn-symbols" title="Símbolos e emojis">
-                ✧ Símbolos
-              </button>
-              <div class="sim-popover" id="chat-popover-symbols">
-                <div style="font-size:12px; color:#aaa; margin-bottom:6px;">CARACTERES MINECRAFT</div>
-                <div class="popover-grid-buttons">
-                  <button>✧</button>
-                  <button>⚒</button>
-                  <button>⚔</button>
-                  <button>★</button>
-                  <button>❤</button>
-                  <button>⚡</button>
-                </div>
-              </div>
-            </div>
-
-            <button class="mc-chatbar-btn" title="Histórico de até 2000 linhas">
-              🔍 2000 Linhas
-            </button>
-            <button class="mc-chatbar-btn" title="Tradução Nativa Ativa" style="color:var(--primary-light);">
-              🌐 Traduzir (EN ↔ PT)
-            </button>
-          </div>
-
-          <!-- Input Minecraft com Cursor -->
-          <div class="mc-input-wrap">
-            <input type="text" class="mc-chat-input mc-font" id="chat-sim-input" placeholder="Digite uma mensagem (ex: Alguem pode me ajudar?)...">
-            <button class="mc-send-btn mc-font" id="chat-sim-send">Enviar</button>
-          </div>
-        </div>
-
-        <!-- Vídeo Real In-Game (Crop de CSS) -->
-        <div class="video-showcase-box" data-reveal data-reveal-delay="1">
-          <div class="video-showcase-header">
-            <span>● Servidor Global (Tradução In-Game)</span>
-            <span class="badge">Chat & Tradutor</span>
-          </div>
-          <div class="video-crop-viewport">
-            <video src="media/chat-translator.mp4" autoplay loop muted playsinline></video>
-          </div>
-          <div class="video-caption">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
-            <span>Tradução simultânea sem sair do jogo, com suporte a menções e filtros anti-spam.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- SEÇÃO 4: BENTO GRID DE FUNCIONALIDADES & PERFORMANCE -->
   <section id="funcionalidades" class="section">

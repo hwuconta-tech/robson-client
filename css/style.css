@@ -1,3 +1,18 @@
+/* Decorações do Tema nas Bordas do Navegador */
+.browser-theme-side-left, .browser-theme-side-right {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--primary);
+  box-shadow: 0 0 16px var(--primary-glow);
+  z-index: 998;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+.browser-theme-side-left { left: 0; }
+.browser-theme-side-right { right: 0; }
+
 /* Top Browser Accent Stripe */
 .browser-theme-accent-stripe {
   position: fixed;
@@ -548,7 +563,7 @@ button:active, .chat-action-btn:active, .theme-btn:active, .btn-primary:active, 
 .mc-game-backdrop {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('../media/v141-boss-world.png') center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('../media/mc-world-sunny.png') center/cover no-repeat;
   filter: brightness(0.95);
 }
 
@@ -628,6 +643,39 @@ button:active, .chat-action-btn:active, .theme-btn:active, .btn-primary:active, 
   top: 0;
   left: 7px;
 }
+
+/* Braço do Jogador em Primeira Pessoa com Ataque */
+.mc-player-arm {
+  position: absolute;
+  bottom: -15px;
+  right: 14%;
+  width: 130px;
+  height: 170px;
+  transform-origin: bottom right;
+  pointer-events: none;
+  z-index: 15;
+  transition: transform 0.08s ease-out;
+  transform: translateZ(50px);
+}
+
+.mc-player-arm.swinging {
+  animation: mcAttackSwing 0.22s cubic-bezier(0.2, 0.8, 0.4, 1.2);
+}
+
+@keyframes mcAttackSwing {
+  0% { transform: rotate(0deg) translateY(0) translateZ(50px); }
+  45% { transform: rotate(-38deg) translateY(24px) scale(1.15) translateZ(55px); }
+  100% { transform: rotate(0deg) translateY(0) translateZ(50px); }
+}
+
+.mc-arm-item {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+  image-rendering: pixelated;
+}
+
 
 /* In-game Scoreboard no topo direito */
 .mc-scoreboard-demo {
