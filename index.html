@@ -14,6 +14,8 @@
 
   <!-- LINHA DECORATIVA DO TEMA NO TOPO DO NAVEGADOR -->
   <div class="browser-theme-accent-stripe" aria-hidden="true"></div>
+  <div class="browser-theme-corner top-left" aria-hidden="true"></div>
+  <div class="browser-theme-corner top-right" aria-hidden="true"></div>
   <div class="browser-theme-side-left" aria-hidden="true"></div>
   <div class="browser-theme-side-right" aria-hidden="true"></div>
 
@@ -39,17 +41,19 @@
 
       <div class="nav-actions">
         <!-- Seletor de Temas Global -->
+        <div class="nav-theme-strip" title="Faixa material do tema ativo"></div>
+
         <div class="theme-selector-pill" title="Mudar Tema do Client e do Site">
           <button class="theme-btn active" data-set-theme="diamante" title="Tema Diamante (Mineral Lapidado)">
-            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3 6l4-4h6l4 4-7 12Z"/></svg>
+            <img src="assets/themes/diamante-icon.png" width="18" height="18" alt="Diamante">
             <span>Diamante</span>
           </button>
           <button class="theme-btn" data-set-theme="ametista" title="Tema Ametista (Estratos de Geodo)">
-            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2l6 4-3 12H7L4 6Z"/></svg>
+            <img src="assets/themes/ametista-icon.png" width="18" height="18" alt="Ametista">
             <span>Ametista</span>
           </button>
           <button class="theme-btn" data-set-theme="esmeralda" title="Tema Esmeralda (Oficina de Deepslate)">
-            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 2h10l3 6-8 10L2 8Z"/></svg>
+            <img src="assets/themes/esmeralda-icon.png" width="18" height="18" alt="Esmeralda">
             <span>Esmeralda</span>
           </button>
         </div>
@@ -96,7 +100,10 @@
       </div>
 
       <!-- TELA MINECRAFT IN-GAME VIVA (3D TILT COM HUD REAL) -->
-      <div class="mc-game-viewport-wrap" data-reveal>
+      <div class="mc-game-viewport-wrap window-themed-frame" data-reveal>
+        <div class="window-theme-corner tl"></div>
+        <div class="window-theme-corner tr"></div>
+        <div class="window-theme-emblem"></div>
         <div class="mc-game-screen" id="hero-game-screen">
           <div class="mc-game-backdrop"></div>
 
@@ -235,7 +242,10 @@
       </div>
 
       <!-- Monitor Frame -->
-      <div class="client-frame-window" data-reveal>
+      <div class="client-frame-window window-themed-frame" data-reveal>
+        <div class="window-theme-corner tl"></div>
+        <div class="window-theme-corner tr"></div>
+        <div class="window-theme-emblem"></div>
         <div class="client-frame-topbar">
           <div class="window-dots">
             <span class="red"></span>
@@ -381,7 +391,10 @@
 
       <div class="lab-grid">
         <!-- Chat Minecraft Autêntico (Com Copiar, Robson Chat Bar e Tradutor Nativo) -->
-        <div class="mc-chat-screen-window mc-font" data-reveal>
+        <div class="mc-chat-screen-window window-themed-frame mc-font" data-reveal>
+          <div class="window-theme-corner tl"></div>
+          <div class="window-theme-corner tr"></div>
+          <div class="window-theme-emblem"></div>
           <!-- Mensagens com fundo translúcido clássico do Minecraft -->
           <div class="mc-vanilla-chat-hud" id="chat-sim-messages">
             <div class="mc-chat-row">
