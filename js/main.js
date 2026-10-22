@@ -667,7 +667,7 @@ function initGalleryLightbox() {
 function initDiscordCopy() {
   document.querySelectorAll('[data-discord-copy]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const discordHandle = btn.dataset.discordCopy || 'caio';
+      const discordHandle = btn.dataset.discordCopy || 'kayoba15_';
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(discordHandle).catch(() => {});
       }

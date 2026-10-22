@@ -66,5 +66,5 @@ A tela de início oficial do Minecraft permanece **totalmente limpa e original**
 ## 👤 Criador & Contato
 
 - **Desenvolvedor:** Caio
-- **Discord:** `@caio`
+- **Discord:** `@kayoba15_`
 - **Projeto:** Pessoal e independente para a comunidade de Minecraft 1.21.1 Fabric.
