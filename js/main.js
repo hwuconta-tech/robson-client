@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGalleryLightbox();
   initDiscordCopy();
   initScrollNav();
+  initNavToggle();
 });
 
 /* ==========================================================
@@ -699,6 +700,8 @@ function showToast(message) {
    12. SCROLL SPY FOR NAVBAR
    ========================================================== */
 function initScrollNav() {
+  if (!document.querySelector('.nav-links a[href^="#"]')) return;
+
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -720,6 +723,40 @@ function initScrollNav() {
       });
     }
   }, { passive: true });
+}
+
+function initNavToggle() {
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  if (!toggle || !links) return;
+
+  const close = () => {
+    links.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const open = !links.classList.contains('open');
+    links.classList.toggle('open', open);
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  links.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+
+  document.addEventListener('click', (event) => {
+    if (!links.contains(event.target) && !toggle.contains(event.target)) close();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') close();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1240) close();
+  });
 }
 
 function escapeHtml(str) {

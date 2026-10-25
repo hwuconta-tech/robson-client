@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atualizações & Changelog — Robson Client</title>
+  <meta name="description" content="Changelog completo do Robson Client para Minecraft 1.21.1 Fabric. Novidades, menus próprios, tradutor e melhorias de performance.">
+  <link rel="icon" type="image/png" href="assets/robson-logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/updates.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}</style></noscript>
+</head>
+<body data-site-theme="diamante" class="updates-page">
+
+  <div class="browser-theme-accent-stripe" aria-hidden="true"></div>
+  <div class="browser-theme-corner top-left" aria-hidden="true"></div>
+  <div class="browser-theme-corner top-right" aria-hidden="true"></div>
+  <div class="browser-theme-side-left" aria-hidden="true"></div>
+  <div class="browser-theme-side-right" aria-hidden="true"></div>
+
+  <!-- NAVBAR SÓLIDA ESTILO MINECRAFT -->
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/robson-logo.png" alt="Robson Client Logo">
+        <div class="nav-brand-text">
+          <span class="nav-brand-title">Robson Client</span>
+          <span class="nav-brand-version" id="nav-active-theme">CORTE DIAMANTE</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#hero">Início</a></li>
+        <li><a href="index.html#menu-client">Menu In-Game</a></li>
+        <li><a href="index.html#hud-studio">HUD Studio</a></li>
+        <li><a href="index.html#chat-tradutor">Chat & Tradutor</a></li>
+        <li><a href="index.html#galeria">Galeria</a></li>
+        <li><a href="atualizacoes.html" class="active">Atualizações</a></li>
+        <li><a href="comunidade.html">Comunidade</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="theme-selector-pill" title="Mudar Tema do Client e do Site">
+          <button class="theme-btn active" data-set-theme="diamante" title="Tema Diamante (Mineral Lapidado)">
+            <img src="assets/themes/diamante-icon.png" width="18" height="18" alt="Diamante">
+            <span>Diamante</span>
+          </button>
+          <button class="theme-btn" data-set-theme="ametista" title="Tema Ametista (Estratos de Geodo)">
+            <img src="assets/themes/ametista-icon.png" width="18" height="18" alt="Ametista">
+            <span>Ametista</span>
+          </button>
+          <button class="theme-btn" data-set-theme="esmeralda" title="Tema Esmeralda (Oficina de Deepslate)">
+            <img src="assets/themes/esmeralda-icon.png" width="18" height="18" alt="Esmeralda">
+            <span>Esmeralda</span>
+          </button>
+        </div>
+
+        <button class="btn-discord-nav" data-discord-copy="kayoba15_" title="Copiar usuário do Discord (@kayoba15_)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          <span>Discord</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="updates-hero">
+      <div class="hero-glow-orb" aria-hidden="true"></div>
+      <div class="container">
+        <div class="updates-hero-content" data-reveal>
+          <span class="badge pulse">Histórico de Versões</span>
+          <h1>O que muda no <span class="gradient-title">Robson Client</span></h1>
+          <p>
+            Acompanhe a evolução do client. Clique em cada versão abaixo para desenrolar o pergaminho
+            com as novidades visuais, novos menus e melhorias feitas para os jogadores.
+          </p>
+        </div>
+
+        <!-- ESTATÍSTICAS REAIS DO JOGADOR -->
+        <div class="player-stats-bar" data-reveal data-reveal-delay="1">
+          <div class="player-stat-card">
+            <strong>1.4.2</strong>
+            <span>Versão Atual</span>
+          </div>
+          <div class="player-stat-card">
+            <strong>3 Temas</strong>
+            <span>Diamante · Ametista · Esmeralda</span>
+          </div>
+          <div class="player-stat-card">
+            <strong>100% In-Game</strong>
+            <span>Menus & HUD Studio Próprios</span>
+          </div>
+          <div class="player-stat-card">
+            <strong>Fabric 1.21.1</strong>
+            <span>Compatível com Mods Externos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO ACCORDION PERGAMINHO -->
+    <section class="changelog-section">
+      <div class="container">
+        <div class="scroll-accordion" id="changelog-accordion">
+
+          <!-- ==============================================
+               VERSÃO 1.4.2 (ABERTA POR PADRÃO)
+               ============================================== -->
+          <div class="scroll-entry open" data-version="1.4.2">
+            <button class="scroll-header" type="button" aria-expanded="true">
+              <div class="scroll-header-left">
+                <span class="scroll-arrow" aria-hidden="true">▶</span>
+                <span class="scroll-version-badge">v1.4.2</span>
+                <div class="scroll-title-wrap">
+                  <h3 class="scroll-title">A Grande Suíte de Menus & Tradutor Inteligente</h3>
+                  <span class="scroll-date">Outubro de 2026</span>
+                </div>
+              </div>
+              <div class="scroll-header-right">
+                <span class="scroll-tag current">Versão Recente</span>
+              </div>
+            </button>
+
+            <div class="scroll-content">
+              <div class="scroll-inner">
+                <!-- Vitrine Mineral com Prints das Novidades -->
+                <div class="scroll-gallery">
+                  <div class="showcase-frame">
+                    <div class="showcase-frame-img">
+                      <img src="media/v142-title-diamante.png" alt="Novo Menu Principal no Tema Diamante" loading="lazy">
+                    </div>
+                    <div class="showcase-frame-caption">
+                      <strong>Menu Principal Robson</strong>
+                      <p>Card com skin do player, seleção de temas e atalhos rápidos.</p>
+                    </div>
+                  </div>
+
+                  <div class="showcase-frame">
+                    <div class="showcase-frame-img">
+                      <img src="media/v14-chat-bar.png" alt="Barra de Chat com Tradutor e Copiador" loading="lazy">
+                    </div>
+                    <div class="showcase-frame-caption">
+                      <strong>Tradutor & Chat Bar</strong>
+                      <p>Botão TR na barra de chat e botão de copiar mensagem.</p>
+                    </div>
+                  </div>
+
+                  <div class="showcase-frame">
+                    <div class="showcase-frame-img">
+                      <img src="media/editor-hud.png" alt="HUD Studio com Grade e Escala" loading="lazy">
+                    </div>
+                    <div class="showcase-frame-caption">
+                      <strong>HUD Studio Renovado</strong>
+                      <p>Ajuste livre de escala, posição e opacidade na tela.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tópicos Práticos para o Jogador -->
+                <div class="scroll-features">
+                  <h4 class="scroll-section-title">✨ Destaques da Atualização</h4>
+                  <div class="scroll-features-grid">
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">💎</div>
+                      <div class="scroll-card-body">
+                        <strong>Novo Menu Principal (TitleScreen)</strong>
+                        <p>Interface mineral refinada, card exclusivo com a skin do seu jogador e troca instantânea entre os temas Diamante, Ametista e Esmeralda.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">⏸️</div>
+                      <div class="scroll-card-body">
+                        <strong>Menu de Pause In-Game</strong>
+                        <p>Ao apertar Esc, visualize o card da sua sessão com botão direto para o ClickGUI e HUD Studio, mantendo todos os botões vanilla intactos.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">🌐</div>
+                      <div class="scroll-card-body">
+                        <strong>Navegador de Servidores com Pastas</strong>
+                        <p>Crie pastas para organizar seus servidores favoritos, fixe os mais jogados no topo e acompanhe o ping numérico colorido em milissegundos.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">👤</div>
+                      <div class="scroll-card-body">
+                        <strong>Gerenciador de Contas Integrado</strong>
+                        <p>Alterne facilmente entre a sua conta oficial do launcher e perfis offline com identificação de skin direto nas telas do client.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">💬</div>
+                      <div class="scroll-card-body">
+                        <strong>Tradutor Automático de Chat (PT-BR ↔ EN)</strong>
+                        <p>Botão TR na barra de chat. Traduz automaticamente mensagens privadas e comandos globais preservando cores, tags e prefixos dos servidores.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">📋</div>
+                      <div class="scroll-card-body">
+                        <strong>Copiador de Mensagens no Chat</strong>
+                        <p>Copie qualquer mensagem ou comando do chat para a área de transferência com um clique no botão lateral da linha.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==============================================
+               VERSÃO 1.4.1 (FECHADA POR PADRÃO)
+               ============================================== -->
+          <div class="scroll-entry" data-version="1.4.1">
+            <button class="scroll-header" type="button" aria-expanded="false">
+              <div class="scroll-header-left">
+                <span class="scroll-arrow" aria-hidden="true">▶</span>
+                <span class="scroll-version-badge">v1.4.1</span>
+                <div class="scroll-title-wrap">
+                  <h3 class="scroll-title">Temas Minerais & Refinamento Visual</h3>
+                  <span class="scroll-date">Outubro de 2026</span>
+                </div>
+              </div>
+              <div class="scroll-header-right">
+                <span class="scroll-tag">Estável</span>
+              </div>
+            </button>
+
+            <div class="scroll-content">
+              <div class="scroll-inner">
+                <div class="scroll-gallery">
+                  <div class="showcase-frame">
+                    <div class="showcase-frame-img">
+                      <img src="media/v141-diamante.png" alt="Tema Diamante" loading="lazy">
+                    </div>
+                    <div class="showcase-frame-caption">
+                      <strong>Corte Diamante</strong>
+                      <p>Visual mineral lapidado com tons frios e precisão.</p>
+                    </div>
+                  </div>
+
+                  <div class="showcase-frame">
+                    <div class="showcase-frame-img">
+                      <img src="media/v141-ametista.png" alt="Tema Ametista" loading="lazy">
+                    </div>
+                    <div class="showcase-frame-caption">
+                      <strong>Corte Ametista</strong>
+                      <p>Estratos de geodo violeta com detalhes em cobre.</p>
+                    </div>
+                  </div>
+
+                  <div class="showcase-frame">
+                    <div class="showcase-frame-img">
+                      <img src="media/v141-esmeralda.png" alt="Tema Esmeralda" loading="lazy">
+                    </div>
+                    <div class="showcase-frame-caption">
+                      <strong>Corte Esmeralda</strong>
+                      <p>Pedra verde com acabamento de oficina de deepslate.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="scroll-features">
+                  <h4 class="scroll-section-title">✨ Melhorias da Versão</h4>
+                  <div class="scroll-features-grid">
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">🎨</div>
+                      <div class="scroll-card-body">
+                        <strong>Três Identidades Visuais Únicas</strong>
+                        <p>Cada tema oferece atmosfera própria sem mudar o layout ou a navegação do ClickGUI. Tudo continua no mesmo lugar.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">🔍</div>
+                      <div class="scroll-card-body">
+                        <strong>Busca Rápida de Módulos</strong>
+                        <p>Digite o nome de qualquer módulo ou configuração para encontrar instantaneamente no menu com filtro em tempo real.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">🛡️</div>
+                      <div class="scroll-card-body">
+                        <strong>Filtros e Proteção de Chat</strong>
+                        <p>Filtros de menção destacada, anti-spam configurável e histórico estendido para nunca perder uma mensagem importante.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==============================================
+               VERSÃO 1.4.0 (FECHADA POR PADRÃO)
+               ============================================== -->
+          <div class="scroll-entry" data-version="1.4.0">
+            <button class="scroll-header" type="button" aria-expanded="false">
+              <div class="scroll-header-left">
+                <span class="scroll-arrow" aria-hidden="true">▶</span>
+                <span class="scroll-version-badge">v1.4.0</span>
+                <div class="scroll-title-wrap">
+                  <h3 class="scroll-title">Robson Chat Bar, AutoTexts & Utilidades</h3>
+                  <span class="scroll-date">Outubro de 2026</span>
+                </div>
+              </div>
+              <div class="scroll-header-right">
+                <span class="scroll-tag">Base</span>
+              </div>
+            </button>
+
+            <div class="scroll-content">
+              <div class="scroll-inner">
+                <div class="scroll-gallery">
+                  <div class="showcase-frame">
+                    <div class="showcase-frame-img">
+                      <img src="media/v14-symbols.png" alt="Seletor de Símbolos" loading="lazy">
+                    </div>
+                    <div class="showcase-frame-caption">
+                      <strong>Seletor de Símbolos</strong>
+                      <p>Teclado de emojis e símbolos especiais para o chat.</p>
+                    </div>
+                  </div>
+
+                  <div class="showcase-frame">
+                    <div class="showcase-frame-img">
+                      <img src="media/busca-inventario.png" alt="Quick Transfer e Scroll" loading="lazy">
+                    </div>
+                    <div class="showcase-frame-caption">
+                      <strong>Utilidades de Inventário</strong>
+                      <p>Transferência rápida de itens e prévia de baús de shulker.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="scroll-features">
+                  <h4 class="scroll-section-title">✨ Recursos Iniciais</h4>
+                  <div class="scroll-features-grid">
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">⌨️</div>
+                      <div class="scroll-card-body">
+                        <strong>Robson Chat Bar</strong>
+                        <p>Barra auxiliar no chat para enviar mensagens frequentes e comandos com apenas um clique.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">⚡</div>
+                      <div class="scroll-card-body">
+                        <strong>AutoTexts & Binds Rápidos</strong>
+                        <p>Configure teclas de atalho para enviar comandos como /home, /spawn e mensagens rápidas em servidores.</p>
+                      </div>
+                    </div>
+
+                    <div class="scroll-card">
+                      <div class="scroll-card-icon">💡</div>
+                      <div class="scroll-card-body">
+                        <strong>Fullbright & Visuais Otimizados</strong>
+                        <p>Brilho total ajustável sem alterar as texturas vanilla, além de aviso visual de armadura desgastada.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BANNER DE CONVITE PARA A COMUNIDADE -->
+        <div class="community-invite-banner" data-reveal>
+          <div class="invite-banner-text">
+            <h3>Quer opinar sobre o lançamento do Robson Client?</h3>
+            <p>O client foi feito como um projeto pessoal. Dê o seu voto na nossa página de Comunidade e ajude a decidir os próximos passos!</p>
+          </div>
+          <a href="comunidade.html" class="btn-primary">Ir para a Votação da Comunidade ▶</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/robson-logo.png" alt="Robson Client">
+            <span>Robson Client</span>
+          </div>
+          <p>Cliente Fabric 1.21.1 independente focado em desempenho, personalização e utilidades in-game.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html#hero">Início</a></li>
+            <li><a href="index.html#menu-client">Menu In-Game</a></li>
+            <li><a href="index.html#hud-studio">HUD Studio</a></li>
+            <li><a href="atualizacoes.html">Atualizações</a></li>
+            <li><a href="comunidade.html">Comunidade & Votação</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Comunidade</h4>
+          <ul>
+            <li><a href="#" data-discord-copy="kayoba15_">Discord: @kayoba15_</a></li>
+            <li><a href="https://github.com/hwuconta-tech/robson-client" target="_blank" rel="noopener noreferrer">GitHub Oficial</a></li>
+            <li><a href="comunidade.html">Votação Pública</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Robson Client é um projeto independente para Minecraft 1.21.1 Fabric. Não é um produto oficial da Mojang Studios nem da Microsoft.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/updates.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comunidade & Votação — Robson Client</title>
+  <meta name="description" content="Participe da decisão sobre o lançamento público do Robson Client para Minecraft 1.21.1 Fabric. Vote e envie seu feedback!">
+  <link rel="icon" type="image/png" href="assets/robson-logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/updates.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}</style></noscript>
+</head>
+<body data-site-theme="diamante" class="community-page">
+
+  <div class="browser-theme-accent-stripe" aria-hidden="true"></div>
+  <div class="browser-theme-corner top-left" aria-hidden="true"></div>
+  <div class="browser-theme-corner top-right" aria-hidden="true"></div>
+  <div class="browser-theme-side-left" aria-hidden="true"></div>
+  <div class="browser-theme-side-right" aria-hidden="true"></div>
+
+  <!-- NAVBAR SÓLIDA ESTILO MINECRAFT -->
+  <div class="navbar-wrap">
+    <nav class="navbar">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/robson-logo.png" alt="Robson Client Logo">
+        <div class="nav-brand-text">
+          <span class="nav-brand-title">Robson Client</span>
+          <span class="nav-brand-version" id="nav-active-theme">CORTE DIAMANTE</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#hero">Início</a></li>
+        <li><a href="index.html#menu-client">Menu In-Game</a></li>
+        <li><a href="index.html#hud-studio">HUD Studio</a></li>
+        <li><a href="index.html#chat-tradutor">Chat & Tradutor</a></li>
+        <li><a href="index.html#galeria">Galeria</a></li>
+        <li><a href="atualizacoes.html">Atualizações</a></li>
+        <li><a href="comunidade.html" class="active">Comunidade</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="theme-selector-pill" title="Mudar Tema do Client e do Site">
+          <button class="theme-btn active" data-set-theme="diamante" title="Tema Diamante (Mineral Lapidado)">
+            <img src="assets/themes/diamante-icon.png" width="18" height="18" alt="Diamante">
+            <span>Diamante</span>
+          </button>
+          <button class="theme-btn" data-set-theme="ametista" title="Tema Ametista (Estratos de Geodo)">
+            <img src="assets/themes/ametista-icon.png" width="18" height="18" alt="Ametista">
+            <span>Ametista</span>
+          </button>
+          <button class="theme-btn" data-set-theme="esmeralda" title="Tema Esmeralda (Oficina de Deepslate)">
+            <img src="assets/themes/esmeralda-icon.png" width="18" height="18" alt="Esmeralda">
+            <span>Esmeralda</span>
+          </button>
+        </div>
+
+        <button class="btn-discord-nav" data-discord-copy="kayoba15_" title="Copiar usuário do Discord (@kayoba15_)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          <span>Discord</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <!-- HERO SECTION DA COMUNIDADE -->
+    <section class="community-hero">
+      <div class="hero-glow-orb" aria-hidden="true"></div>
+      <div class="container">
+        <div class="community-hero-content" data-reveal>
+          <span class="badge pulse">Votação da Comunidade</span>
+          <h1>O Futuro do <span class="gradient-title">Robson Client</span></h1>
+          <p>
+            O client começou como um projeto pessoal para garantir a melhor jogabilidade e menus refinados no Minecraft 1.21.1 Fabric.
+            Agora, a comunidade decide se ele deve ser lançado publicamente para todos baixarem!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD CENTRAL DE VOTAÇÃO -->
+    <section class="section" style="padding-top: 10px;">
+      <div class="container">
+        <div class="vote-central-card" data-reveal>
+          <h2>Você acha que o Robson Client deve ser lançado publicamente?</h2>
+          <p class="vote-desc">
+            Vote com sinceridade na opção que melhor representa sua opinião. Seu voto é registrado instantaneamente
+            e ajuda a guiar as próximas fases do desenvolvimento.
+          </p>
+
+          <!-- OPÇÕES DE VOTO ESTILO MINECRAFT -->
+          <div class="vote-options-grid" data-poll>
+            <button class="vote-btn-option" type="button" data-vote="sim" aria-pressed="false">
+              <span class="vote-icon-large">💎</span>
+              <span class="vote-btn-title">Sim, lança publicamente!</span>
+              <span class="vote-btn-sub">Quero jogar com o client e baixar no Modrinth.</span>
+            </button>
+
+            <button class="vote-btn-option" type="button" data-vote="talvez" aria-pressed="false">
+              <span class="vote-icon-large">⏳</span>
+              <span class="vote-btn-title">Talvez, com mais melhorias</span>
+              <span class="vote-btn-sub">Ainda precisa de mais testes e recursos antes.</span>
+            </button>
+
+            <button class="vote-btn-option" type="button" data-vote="nao" aria-pressed="false">
+              <span class="vote-icon-large">🔒</span>
+              <span class="vote-btn-title">Não, mantém pessoal</span>
+              <span class="vote-btn-sub">Prefiro que continue sendo um client exclusivo.</span>
+            </button>
+          </div>
+
+          <!-- ÁREA DE FEEDBACK E CONFIRMAÇÃO -->
+          <div class="vote-feedback-area" id="vote-feedback">
+            <div class="vote-feedback-message">
+              <span id="vote-feedback-icon">🗳️</span>
+              <span id="vote-feedback-text">Clique em uma das opções acima para registrar seu voto.</span>
+            </div>
+            <div class="vote-action-buttons">
+              <button class="btn-secondary" type="button" data-discord-copy="kayoba15_">Copiar Discord (@kayoba15_)</button>
+              <a class="btn-primary" href="https://github.com/hwuconta-tech/robson-client/issues/new?title=Voto%3A%20Lan%C3%A7amento%20P%C3%BAblico&body=Meu%20voto%3A%20%5Bsim%2Ftalvez%2Fnao%5D%0AOpini%C3%A3o%3A%20" target="_blank" rel="noopener noreferrer">Voto Público no GitHub</a>
+            </div>
+          </div>
+
+          <!-- PAINEL PRIVADO DO ADMINISTRADOR (Toggle por botão discreto ou URL ?admin=1) -->
+          <div class="admin-stats-box" id="admin-stats-panel" style="display: none;">
+            <h4>👑 Painel de Administração (Votos Consolidados)</h4>
+            <div class="admin-bars" id="admin-bars-list">
+              <div class="admin-bar-item" data-adm-res="sim">
+                <span style="width: 140px; text-align: left;">💎 Sim (Público):</span>
+                <div class="admin-bar-track"><div class="admin-bar-fill"></div></div>
+                <strong style="width: 50px; text-align: right;">0%</strong>
+              </div>
+              <div class="admin-bar-item" data-adm-res="talvez">
+                <span style="width: 140px; text-align: left;">⏳ Talvez (Melhorias):</span>
+                <div class="admin-bar-track"><div class="admin-bar-fill"></div></div>
+                <strong style="width: 50px; text-align: right;">0%</strong>
+              </div>
+              <div class="admin-bar-item" data-adm-res="nao">
+                <span style="width: 140px; text-align: left;">🔒 Não (Pessoal):</span>
+                <div class="admin-bar-track"><div class="admin-bar-fill"></div></div>
+                <strong style="width: 50px; text-align: right;">0%</strong>
+              </div>
+            </div>
+            <p style="font-size: 11px; color: var(--text-dim); margin-top: 10px; margin-bottom: 0;">
+              Total de votos contabilizados: <strong id="admin-total-votes">0</strong>.
+            </p>
+          </div>
+          <button id="btn-toggle-admin" type="button" style="background: none; border: none; font-size: 11px; color: var(--text-dim); cursor: pointer; margin-top: 16px;">
+            [Alternar visualização administrativa]
+          </button>
+        </div>
+
+        <!-- CARDS DE CONTATO E COMUNIDADE -->
+        <div class="community-grid-cards" data-reveal data-reveal-delay="1">
+          <div class="community-card">
+            <h3>💬 Conversar no Discord</h3>
+            <p>Quer tirar dúvidas, dar sugestões diretas ou trocar uma ideia sobre o projeto? Chame no privado.</p>
+            <button class="btn-secondary" type="button" data-discord-copy="kayoba15_">Copiar @kayoba15_</button>
+          </div>
+
+          <div class="community-card">
+            <h3>⭐ Código & Repositório</h3>
+            <p>Acompanhe o desenvolvimento no GitHub, veja os commits recentes ou abra uma sugestão.</p>
+            <a href="https://github.com/hwuconta-tech/robson-client" target="_blank" rel="noopener noreferrer" class="btn-primary">Ver no GitHub</a>
+          </div>
+
+          <div class="community-card">
+            <h3>📜 Ver o que mudou</h3>
+            <p>Confira todas as novidades que já foram implementadas no Robson Client no nosso changelog detalhado.</p>
+            <a href="atualizacoes.html" class="btn-secondary">Abrir Atualizações</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/robson-logo.png" alt="Robson Client">
+            <span>Robson Client</span>
+          </div>
+          <p>Cliente Fabric 1.21.1 independente focado em desempenho, personalização e utilidades in-game.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html#hero">Início</a></li>
+            <li><a href="index.html#menu-client">Menu In-Game</a></li>
+            <li><a href="index.html#hud-studio">HUD Studio</a></li>
+            <li><a href="atualizacoes.html">Atualizações</a></li>
+            <li><a href="comunidade.html">Comunidade & Votação</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Comunidade</h4>
+          <ul>
+            <li><a href="#" data-discord-copy="kayoba15_">Discord: @kayoba15_</a></li>
+            <li><a href="https://github.com/hwuconta-tech/robson-client" target="_blank" rel="noopener noreferrer">GitHub Oficial</a></li>
+            <li><a href="comunidade.html">Votação Pública</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Robson Client é um projeto independente para Minecraft 1.21.1 Fabric. Não é um produto oficial da Mojang Studios nem da Microsoft.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/updates.js"></script>
+</body>
+</html>
