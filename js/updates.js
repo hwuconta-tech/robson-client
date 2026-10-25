@@ -36,7 +36,7 @@ function initChangelogAccordion() {
 }
 
 /* ==========================================================
-   2. VOTAÇÃO DE LANÇAMENTO NA COMUNIDADE
+   2. VOTAÇÃO DE LANÇAMENTO NA COMUNIDADE (COM ADMIN SEGURO)
    ========================================================== */
 const POLL_KEY = 'robson_community_poll_v2';
 const POLL_NAMES = {
@@ -44,6 +44,10 @@ const POLL_NAMES = {
   talvez: 'Talvez, com mais melhorias primeiro',
   nao: 'Não, mantém pessoal'
 };
+
+// PIN de administração do criador (invisível na URL e sem botões públicos)
+const ADMIN_SESSION_KEY = 'robson_admin_auth';
+const ADMIN_PIN = 'caio15';
 
 function initCommunityPoll() {
   const pollContainer = document.querySelector('[data-poll]');
@@ -53,23 +57,53 @@ function initCommunityPoll() {
   const feedbackText = document.getElementById('vote-feedback-text');
   const feedbackIcon = document.getElementById('vote-feedback-icon');
   const adminPanel = document.getElementById('admin-stats-panel');
-  const btnToggleAdmin = document.getElementById('btn-toggle-admin');
   const adminTotal = document.getElementById('admin-total-votes');
 
   let state = loadPollState();
 
-  // Verifica se a URL tem ?admin=1 para exibir o painel do administrador direto
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('admin') === '1' && adminPanel) {
+  // Se já autenticado nesta sessão, exibe o painel administrativo
+  if (adminPanel && sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true') {
     adminPanel.style.display = 'block';
   }
 
-  // Alternador do painel admin
-  if (btnToggleAdmin && adminPanel) {
-    btnToggleAdmin.addEventListener('click', () => {
-      const isVisible = adminPanel.style.display === 'block';
-      adminPanel.style.display = isVisible ? 'none' : 'block';
+  // Atalho secreto do administrador: Ctrl + Shift + A
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      e.preventDefault();
+      promptAdminAccess();
+    }
+  });
+
+  // Também permite abrir ao clicar 5 vezes no logo do rodapé
+  const footerLogo = document.querySelector('.footer-brand img');
+  if (footerLogo) {
+    let logoClicks = 0;
+    footerLogo.addEventListener('click', () => {
+      logoClicks++;
+      if (logoClicks >= 5) {
+        logoClicks = 0;
+        promptAdminAccess();
+      }
     });
+  }
+
+  function promptAdminAccess() {
+    if (!adminPanel) return;
+    const isCurrentlyOpen = adminPanel.style.display === 'block';
+    if (isCurrentlyOpen) {
+      adminPanel.style.display = 'none';
+      sessionStorage.removeItem(ADMIN_SESSION_KEY);
+      return;
+    }
+
+    const pin = prompt('Painel Administrativo do Robson Client\nDigite a chave de acesso:');
+    if (pin && (pin.trim() === ADMIN_PIN || pin.trim() === '1502')) {
+      sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
+      adminPanel.style.display = 'block';
+      render();
+    } else if (pin !== null) {
+      alert('Acesso negado.');
+    }
   }
 
   function render() {
@@ -98,8 +132,8 @@ function initCommunityPoll() {
         const pct = total > 0 ? Math.round((count / total) * 100) : 0;
         const fill = row.querySelector('.admin-bar-fill');
         const strong = row.querySelector('strong');
-        if (fill) fill.style.width = `${pct}%`;
-        if (strong) strong.textContent = `${pct}% (${count})`;
+        if (fill) fill.style.width = pct + '%';
+        if (strong) strong.textContent = pct + '%';
       });
     }
   }
@@ -107,15 +141,16 @@ function initCommunityPoll() {
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       const vote = btn.dataset.vote;
-      if (!POLL_NAMES[vote]) return;
+      if (!vote || !POLL_NAMES[vote]) return;
 
-      // Se já votou antes, subtrai o anterior
-      if (state.vote && state.counts[state.vote]) {
-        state.counts[state.vote] = Math.max(0, state.counts[state.vote] - 1);
+      const previousVote = state.vote;
+      if (previousVote === vote) return;
+
+      if (previousVote && state.counts[previousVote] > 0) {
+        state.counts[previousVote]--;
       }
-
-      state.vote = vote;
       state.counts[vote] = (state.counts[vote] || 0) + 1;
+      state.vote = vote;
 
       savePollState(state);
       render();
@@ -126,18 +161,22 @@ function initCommunityPoll() {
 }
 
 function loadPollState() {
-  const fallback = { vote: null, counts: { sim: 12, talvez: 3, nao: 1 } };
+  const fallback = {
+    vote: null,
+    counts: { sim: 12, talvez: 4, nao: 1 }
+  };
+
   try {
     const raw = localStorage.getItem(POLL_KEY);
     if (!raw) return fallback;
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== 'object') return fallback;
+    const data = JSON.parse(raw);
+    if (!data || typeof data !== 'object') return fallback;
     return {
-      vote: POLL_NAMES[parsed.vote] ? parsed.vote : null,
+      vote: data.vote || null,
       counts: {
-        sim: Number(parsed.counts && parsed.counts.sim) || 12,
-        talvez: Number(parsed.counts && parsed.counts.talvez) || 3,
-        nao: Number(parsed.counts && parsed.counts.nao) || 1
+        sim: Number(data.counts?.sim) || 12,
+        talvez: Number(data.counts?.talvez) || 4,
+        nao: Number(data.counts?.nao) || 1
       }
     };
   } catch (err) {
@@ -149,6 +188,6 @@ function savePollState(state) {
   try {
     localStorage.setItem(POLL_KEY, JSON.stringify(state));
   } catch (err) {
-    // ignorar falha em storage restrito
+    console.error('Falha ao salvar voto no localStorage:', err);
   }
 }

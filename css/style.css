@@ -1,30 +1,5 @@
 /* Decorações do Tema nas Bordas do Navegador */
-.browser-theme-side-left, .browser-theme-side-right {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--primary);
-  box-shadow: 0 0 16px var(--primary-glow);
-  z-index: 998;
-  pointer-events: none;
-  transition: all 0.4s ease;
-}
-.browser-theme-side-left { left: 0; }
-.browser-theme-side-right { right: 0; }
-
-/* Top Browser Accent Stripe */
-.browser-theme-accent-stripe {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 1000;
-  background: var(--primary);
-  box-shadow: 0 0 14px var(--primary);
-  transition: all 0.4s ease;
-}
+.browser-theme-side-left, .browser-theme-side-right, .browser-theme-accent-stripe, .browser-theme-corner, .window-theme-corner, .window-theme-emblem { display: none !important; }
 
 /* Robson Client Showcase - Main Style Sheet */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
@@ -58,8 +33,8 @@
   --theme-caption: 'MINERAL LAPIDADO';
   --primary: #06b6d4;
   --primary-light: #67e8f9;
-  --primary-glow: rgba(6, 182, 212, 0.45);
-  --primary-glow-soft: rgba(6, 182, 212, 0.12);
+  --primary-glow: rgba(6, 182, 212, 0.15);
+  --primary-glow-soft: rgba(6, 182, 212, 0.04);
   --primary-rgb: 6, 182, 212;
   
   --bg-dark: #071017;
@@ -94,8 +69,8 @@ body[data-site-theme="ametista"] {
   --theme-caption: 'ESTRATOS DE GEODO';
   --primary: #a855f7;
   --primary-light: #d8b4fe;
-  --primary-glow: rgba(168, 85, 247, 0.45);
-  --primary-glow-soft: rgba(168, 85, 247, 0.12);
+  --primary-glow: rgba(168, 85, 247, 0.15);
+  --primary-glow-soft: rgba(168, 85, 247, 0.04);
   --primary-rgb: 168, 85, 247;
   
   --bg-dark: #120a1a;
@@ -128,8 +103,8 @@ body[data-site-theme="esmeralda"] {
   --theme-caption: 'OFICINA DE DEEPSLATE';
   --primary: #10b981;
   --primary-light: #6ee7b7;
-  --primary-glow: rgba(16, 185, 129, 0.45);
-  --primary-glow-soft: rgba(16, 185, 129, 0.12);
+  --primary-glow: rgba(16, 185, 129, 0.15);
+  --primary-glow-soft: rgba(16, 185, 129, 0.04);
   --primary-rgb: 16, 185, 129;
   
   --bg-dark: #08110b;
@@ -213,19 +188,16 @@ body {
    SCROLL REVEAL & ANIMAÇÕES (AS COISAS VINDO JUNTAS)
    ========================================================== */
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(40px) scale(0.97);
-  filter: blur(6px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  visibility: visible !important;
 }
 
 [data-reveal].revealed {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
 }
 
 [data-reveal-delay="1"] { transition-delay: 0.1s; }
@@ -1739,7 +1711,7 @@ button:active, .chat-action-btn:active, .theme-btn:active, .btn-primary:active, 
   .mc-game-screen { aspect-ratio: auto; height: 380px; }
   .mc-scoreboard-demo { display: none; }
   .client-frame-viewport { height: 520px; }
-  .browser-theme-corner { width: 44px; height: 44px; opacity: .75; }
+  .browser-theme-corner { display: none !important; }
 }
 
 @media (max-width: 520px) {
@@ -1756,20 +1728,7 @@ button:active, .chat-action-btn:active, .theme-btn:active, .btn-primary:active, 
 /* ==========================================================
    DECORAÇÕES VISUAIS DO TEMA (CRISTAIS, GEODOS E MINA)
    ========================================================== */
-.browser-theme-corner {
-  position: fixed;
-  top: 0;
-  width: 54px;
-  height: 54px;
-  background-image: var(--theme-corner-img);
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 90;
-  pointer-events: none;
-  opacity: .85;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7));
-  transition: background-image 0.35s ease;
-}
+.browser-theme-corner { display: none !important; }
 .browser-theme-corner.top-left {
   left: 0;
 }
@@ -1799,18 +1758,7 @@ button:active, .chat-action-btn:active, .theme-btn:active, .btn-primary:active, 
   position: relative;
 }
 
-.window-theme-corner {
-  position: absolute;
-  width: 52px;
-  height: 52px;
-  background-image: var(--theme-corner-img);
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 25;
-  pointer-events: none;
-  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7));
-  transition: background-image 0.35s ease;
-}
+.window-theme-corner { display: none !important; }
 .window-theme-corner.tl {
   top: -8px;
   left: -8px;
@@ -1821,17 +1769,52 @@ button:active, .chat-action-btn:active, .theme-btn:active, .btn-primary:active, 
   transform: scaleX(-1);
 }
 
-.window-theme-emblem {
-  position: absolute;
-  top: -18px;
-  right: 18px;
-  width: 36px;
-  height: 36px;
-  background-image: var(--theme-icon-img);
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 28;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
-  transition: background-image 0.35s ease;
+.window-theme-emblem { display: none !important; }
+
+/* Minecraft Solid Navbar with 3 Tabs */
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav-links a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 7px 18px !important;
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  background: #121a23 !important;
+  border: 2px solid #1e2936 !important;
+  border-top-color: #2c3c4f !important;
+  border-left-color: #2c3c4f !important;
+  border-bottom-color: #06090d !important;
+  border-right-color: #06090d !important;
+  border-radius: 4px !important;
+  white-space: nowrap !important;
+  transition: all 0.15s ease !important;
+}
+
+.nav-links a:hover {
+  color: #ffffff !important;
+  background: #18232f !important;
+  border-top-color: #3b5069 !important;
+  border-left-color: #3b5069 !important;
+}
+
+.nav-links a.active {
+  color: #ffffff !important;
+  background: #15202c !important;
+  border-color: var(--primary) !important;
+  border-top-color: var(--primary-light) !important;
+  border-left-color: var(--primary-light) !important;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.15) !important;
 }
