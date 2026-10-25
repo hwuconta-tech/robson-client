@@ -92,21 +92,66 @@
         </button>
       </div>
 
-      <!-- VITRINE IN-GAME REAL 1:1 DO ROBSON CLIENT -->
+      <!-- VITRINE EM CARROSSEL SUAVE (MENU PRINCIPAL, HUD STUDIO, SERVIDORES) -->
       <div class="mc-hero-showcase-wrap" data-reveal>
         <div class="mc-hero-showcase-frame">
           <div class="mc-hero-top-info">
-            <span class="mc-hero-tag">● In-Game ao Vivo</span>
-            <span class="mc-hero-credit">Cenário capturado no servidor <strong>TalonMC</strong> (<code>play.talonmc.net</code>)</span>
-            <span class="mc-hero-theme-badge" id="hero-active-theme-badge">Tema Ametista Ativo</span>
-          </div>
-          <div class="mc-hero-media-container">
-            <img src="media/hero-ingame-talonmc.png" alt="Visão Geral do Robson Client in-game jogando no servidor TalonMC" class="mc-hero-img" loading="eager">
-            <div class="mc-hero-overlay-callout">
-              <span class="mc-callout-pill">HUD Fullscreen 1:1</span>
-              <span class="mc-callout-pill">Status & Scoreboard Nativo</span>
-              <span class="mc-callout-pill">100% In-Game</span>
+            <div class="mc-hero-top-left">
+              <span class="mc-hero-tag">● Vitrine In-Game P0</span>
+              <span class="mc-hero-slide-counter" id="hero-slide-counter">1 / 3</span>
             </div>
+            <div class="mc-hero-slide-title" id="hero-slide-title">Menu Principal (Card 540 px & Skin Oficial)</div>
+            <div class="mc-hero-top-right">
+              <span class="mc-hero-theme-badge" id="hero-active-theme-badge">Tema Ametista Ativo</span>
+            </div>
+          </div>
+
+          <div class="mc-hero-slider" id="hero-slider">
+            <!-- Botão Anterior < -->
+            <button class="hero-slider-btn prev" id="hero-slide-prev" aria-label="Imagem anterior" title="Imagem anterior">&lt;</button>
+
+            <!-- Trilha Suave do Carrossel -->
+            <div class="hero-slider-track" id="hero-slider-track">
+              <!-- Slide 1: Menu Principal -->
+              <div class="hero-slide" data-slide-title="Menu Principal (Card 540 px & Skin Oficial)">
+                <img src="media/title-screen-p0.png" alt="Menu Principal Robson Client P0 com card de 540 px e avatar" class="mc-hero-img" loading="eager">
+                <div class="mc-hero-overlay-callout">
+                  <span class="mc-callout-pill">1. Menu Principal P0</span>
+                  <span class="mc-callout-pill">Card 540 px</span>
+                  <span class="mc-callout-pill">Skin & Conta Oficial</span>
+                </div>
+              </div>
+
+              <!-- Slide 2: HUD Studio -->
+              <div class="hero-slide" data-slide-title="HUD Studio (Grade Fullscreen & Sliders Laterais)">
+                <img src="media/hud-studio-editor.png" alt="HUD Studio Fullscreen com Grade e Sliders" class="mc-hero-img" loading="lazy">
+                <div class="mc-hero-overlay-callout">
+                  <span class="mc-callout-pill">2. HUD Studio</span>
+                  <span class="mc-callout-pill">Grade de Snap</span>
+                  <span class="mc-callout-pill">Ajustes em Tempo Real</span>
+                </div>
+              </div>
+
+              <!-- Slide 3: Servidores -->
+              <div class="hero-slide" data-slide-title="Navegador de Servidores (Pastas & Pings em ms)">
+                <img src="media/servers-p0-folders.png" alt="Navegador de Servidores P0 com Pastas e Pings" class="mc-hero-img" loading="lazy">
+                <div class="mc-hero-overlay-callout">
+                  <span class="mc-callout-pill">3. Servidores P0</span>
+                  <span class="mc-callout-pill">Pastas na Esquerda</span>
+                  <span class="mc-callout-pill">MOTD & Ping em ms</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botão Próximo > -->
+            <button class="hero-slider-btn next" id="hero-slide-next" aria-label="Próxima imagem" title="Próxima imagem">&gt;</button>
+          </div>
+
+          <!-- Indicadores de Pontos (Dots) no Rodapé da Vitrine -->
+          <div class="hero-slider-dots" id="hero-slider-dots">
+            <button class="slider-dot active" data-slide-idx="0" aria-label="Ir para slide 1"></button>
+            <button class="slider-dot" data-slide-idx="1" aria-label="Ir para slide 2"></button>
+            <button class="slider-dot" data-slide-idx="2" aria-label="Ir para slide 3"></button>
           </div>
         </div>
       </div>
@@ -240,18 +285,18 @@
           </div>
         </div>
 
-        <!-- Vídeo Real In-Game (HUD Studio P0) -->
+        <!-- Vídeo Real In-Game (Chat & Tradutor no TalonMC) -->
         <div class="video-showcase-box" data-reveal data-reveal-delay="1">
           <div class="video-showcase-header">
             <span>● Demonstração In-Game (Minecraft 1.21.1)</span>
-            <span class="badge">HUD Studio</span>
+            <span class="badge">Chat & Tradutor Nativo</span>
           </div>
           <div class="video-crop-viewport">
-            <video src="media/hud-studio-p0.mp4" poster="media/hud-studio-editor.png" autoplay loop muted playsinline controls></video>
+            <video src="media/chat-translator-p0.mp4" poster="media/chat-tr-on.png" autoplay loop muted playsinline controls></video>
           </div>
           <div class="video-caption">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
-            <span>Demonstração do novo HUD Studio fullscreen gravada no Minecraft: arraste livre, snap na grade e persistência instantânea.</span>
+            <span>Tradução bidirecional (PT ↔ EN), alternância rápida e botão Copiar por linha. Gravado no servidor TalonMC (play.talonmc.net).</span>
           </div>
         </div>
       </div>
@@ -333,18 +378,18 @@
           </div>
         </div>
 
-        <!-- Vídeo Real In-Game (HUD Studio P0) -->
+        <!-- Vídeo Real In-Game (Chat & Tradutor no TalonMC) -->
         <div class="video-showcase-box" data-reveal data-reveal-delay="1">
           <div class="video-showcase-header">
             <span>● Demonstração In-Game (Minecraft 1.21.1)</span>
-            <span class="badge">HUD Studio</span>
+            <span class="badge">Chat & Tradutor Nativo</span>
           </div>
           <div class="video-crop-viewport">
-            <video src="media/hud-studio-p0.mp4" poster="media/hud-studio-editor.png" autoplay loop muted playsinline controls></video>
+            <video src="media/chat-translator-p0.mp4" poster="media/chat-tr-on.png" autoplay loop muted playsinline controls></video>
           </div>
           <div class="video-caption">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 8v4m0 4h.01"/></svg>
-            <span>Demonstração do novo HUD Studio fullscreen gravada no Minecraft: arraste livre, snap na grade e persistência instantânea.</span>
+            <span>Tradução bidirecional (PT ↔ EN), alternância rápida e botão Copiar por linha. Gravado no servidor TalonMC (play.talonmc.net).</span>
           </div>
         </div>
       </div>

@@ -773,3 +773,84 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
+
+
+/* ==========================================================
+   CARROSSEL HERO SLIDER (TRANSIÇÃO SUAVE P0)
+   ========================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  initHeroSlider();
+});
+
+function initHeroSlider() {
+  const track = document.getElementById('hero-slider-track');
+  const slides = document.querySelectorAll('.hero-slide');
+  const prevBtn = document.getElementById('hero-slide-prev');
+  const nextBtn = document.getElementById('hero-slide-next');
+  const dots = document.querySelectorAll('.slider-dot');
+  const counter = document.getElementById('hero-slide-counter');
+  const title = document.getElementById('hero-slide-title');
+
+  if (!track || slides.length === 0) return;
+
+  let currentIndex = 0;
+  const total = slides.length;
+
+  function updateSlide(index) {
+    currentIndex = (index + total) % total;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    // Atualiza contador
+    if (counter) {
+      counter.textContent = `${currentIndex + 1} / ${total}`;
+    }
+
+    // Atualiza título do slide
+    if (title && slides[currentIndex]) {
+      const slideTitle = slides[currentIndex].dataset.slideTitle;
+      if (slideTitle) title.textContent = slideTitle;
+    }
+
+    // Atualiza dots
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentIndex);
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      updateSlide(currentIndex - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      updateSlide(currentIndex + 1);
+    });
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const idx = parseInt(dot.dataset.slideIdx, 10);
+      if (!isNaN(idx)) updateSlide(idx);
+    });
+  });
+
+  // Suporte a teclado quando o foco estiver na vitrine
+  const slider = document.getElementById('hero-slider');
+  if (slider) {
+    slider.setAttribute('tabindex', '0');
+    slider.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        updateSlide(currentIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        updateSlide(currentIndex + 1);
+      }
+    });
+  }
+}

@@ -1930,3 +1930,161 @@ button:active, .chat-action-btn:active, .theme-btn:active, .btn-primary:active, 
   transform: none !important;
   display: block;
 }
+
+/* ==========================================================
+   CARROSSEL SUAVE DA VITRINE HERO (P0)
+   ========================================================== */
+.mc-hero-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  user-select: none;
+}
+
+.hero-slider-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.hero-slide {
+  position: relative;
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  background: #000;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Botões < e > com estilo Minecraft 3D */
+.hero-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 52px;
+  background: rgba(14, 21, 29, 0.88);
+  border: 2px solid #2b3b4d;
+  border-top-color: #415873;
+  border-left-color: #415873;
+  border-bottom-color: #06090d;
+  border-right-color: #06090d;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+
+.hero-slider-btn:hover {
+  background: #1c2837;
+  border-color: var(--primary);
+  border-top-color: var(--primary-light);
+  border-left-color: var(--primary-light);
+  color: var(--primary-light);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.hero-slider-btn:active {
+  transform: translateY(-50%) scale(0.96);
+  border-top-color: #06090d;
+  border-left-color: #06090d;
+  border-bottom-color: #415873;
+  border-right-color: #415873;
+}
+
+.hero-slider-btn.prev {
+  left: 14px;
+}
+
+.hero-slider-btn.next {
+  right: 14px;
+}
+
+/* Informações do Slide no Topo */
+.mc-hero-top-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mc-hero-slide-counter {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--primary-light);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 3px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
+}
+
+.mc-hero-slide-title {
+  font-weight: 700;
+  color: #f1f5f9;
+  font-size: 13px;
+  letter-spacing: -0.2px;
+}
+
+/* Dots Indicadores no Rodapé */
+.hero-slider-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #0f1620;
+  border-top: 1px solid #1a2533;
+}
+
+.slider-dot {
+  width: 24px;
+  height: 6px;
+  background: #253344;
+  border: 1px solid #384d66;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+
+.slider-dot:hover {
+  background: #3b506b;
+}
+
+.slider-dot.active {
+  width: 36px;
+  background: var(--primary);
+  border-color: var(--primary-light);
+  box-shadow: 0 0 6px var(--primary-glow);
+}
+
+@media (max-width: 768px) {
+  .mc-hero-slide-title {
+    display: none;
+  }
+  .hero-slider-btn {
+    width: 36px;
+    height: 42px;
+    font-size: 13px;
+  }
+  .hero-slider-btn.prev {
+    left: 8px;
+  }
+  .hero-slider-btn.next {
+    right: 8px;
+  }
+}
