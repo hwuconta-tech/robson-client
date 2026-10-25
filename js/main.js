@@ -186,6 +186,12 @@ function setSiteTheme(theme, syncWithIframe = true) {
     navThemeLabel.textContent = THEME_NAMES[theme];
   }
 
+  const heroThemeBadge = document.getElementById('hero-active-theme-badge');
+  if (heroThemeBadge) {
+    const formatted = theme.charAt(0).toUpperCase() + theme.slice(1);
+    heroThemeBadge.textContent = 'Tema ' + formatted + ' Ativo';
+  }
+
   // Atualiza telemetria no jogo
   const telemetryTheme = document.getElementById('telemetry-theme');
   if (telemetryTheme) {
